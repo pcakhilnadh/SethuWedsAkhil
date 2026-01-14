@@ -16,14 +16,10 @@ export function CoupleSection() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="relative h-[60vh] lg:h-auto"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-amber-500/10" />
-          <video 
-            src={weddingData.couple.videoUrl}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
+          <img 
+            src={weddingData.couple.photoWithoutBg}
+            alt={`${weddingData.groom.name} & ${weddingData.bride.name}`}
+            className="w-full h-full object-contain"
           />
         </motion.div>
 
