@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { weddingData } from "@/data/weddingData";
-import { Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram, Briefcase, Building2, MapPin, Users, UserCircle, Heart } from "lucide-react";
 
 export function CoupleSection() {
   return (
@@ -105,25 +105,69 @@ export function CoupleSection() {
               )}
             </div>
 
-            <div className="space-y-6 text-gray-600 leading-relaxed">
-              <div className="flex gap-4">
-                <div className="w-12 h-px bg-rose-500/30 mt-3 flex-shrink-0" />
-                <div className="space-y-3">
-                  <p className="text-lg font-medium text-gray-900">{weddingData.groom.jobTitle}</p>
-                  <p className="text-sm text-gray-500">{weddingData.groom.company}</p>
+            <div className="space-y-3 mt-8">
+              {/* Profession & Company - Combined Row */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="group relative bg-gradient-to-br from-rose-500/5 to-rose-500/10 p-3 rounded-lg border border-rose-500/20 hover:border-rose-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-rose-500/20 flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="w-4 h-4 text-rose-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[10px] uppercase tracking-wider text-rose-600/70 font-medium mb-0.5">Profession</p>
+                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.groom.profession}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative bg-gradient-to-br from-amber-500/5 to-amber-500/10 p-3 rounded-lg border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                      <Building2 className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[10px] uppercase tracking-wider text-amber-600/70 font-medium mb-0.5">Company</p>
+                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.groom.company}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="w-12 h-px bg-rose-500/30 mt-3 flex-shrink-0" />
-                <p className="text-gray-700">{weddingData.groom.location}</p>
+              {/* Address */}
+              <div className="group relative bg-gradient-to-br from-blue-500/5 to-blue-500/10 p-3 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-md bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[10px] uppercase tracking-wider text-blue-600/70 font-medium mb-0.5">Address</p>
+                    <p className="text-sm font-medium text-gray-900 leading-relaxed">{weddingData.groom.address}</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="w-12 h-px bg-rose-500/30 mt-3 flex-shrink-0" />
-                <p className="text-lg italic text-gray-600 leading-relaxed">
-                  "{weddingData.groom.quote}"
-                </p>
+              {/* Family */}
+              <div className="group relative bg-gradient-to-br from-purple-500/5 to-purple-500/10 p-4 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-md bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                    <Users className="w-4 h-4 text-purple-600" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[10px] uppercase tracking-wider text-purple-600/70 font-medium mb-3">Family</p>
+                    <div className="space-y-2">
+                      {/* Father */}
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
+                        <span className="px-2 py-0.5 bg-purple-500/20 text-purple-700 text-[10px] font-semibold rounded uppercase tracking-wide">Father</span>
+                        <span className="text-xs text-gray-900 font-medium">{weddingData.groom.family.father}</span>
+                      </div>
+                      {/* Mother */}
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
+                        <span className="px-2 py-0.5 bg-rose-500/20 text-rose-700 text-[10px] font-semibold rounded uppercase tracking-wide">Mother</span>
+                        <span className="text-xs text-gray-900 font-medium">{weddingData.groom.family.mother}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -172,25 +216,74 @@ export function CoupleSection() {
               )}
             </div>
 
-            <div className="space-y-6 text-gray-600 leading-relaxed">
-              <div className="flex gap-4">
-                <div className="w-12 h-px bg-rose-500/30 mt-3 flex-shrink-0" />
-                <div className="space-y-3">
-                  <p className="text-lg font-medium text-gray-900">{weddingData.bride.jobTitle}</p>
-                  <p className="text-sm text-gray-500">{weddingData.bride.company}</p>
+            <div className="space-y-3 mt-8">
+              {/* Profession & Company - Combined Row */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="group relative bg-gradient-to-br from-rose-500/5 to-rose-500/10 p-3 rounded-lg border border-rose-500/20 hover:border-rose-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-rose-500/20 flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="w-4 h-4 text-rose-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[10px] uppercase tracking-wider text-rose-600/70 font-medium mb-0.5">Profession</p>
+                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.bride.profession}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative bg-gradient-to-br from-amber-500/5 to-amber-500/10 p-3 rounded-lg border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                      <Building2 className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[10px] uppercase tracking-wider text-amber-600/70 font-medium mb-0.5">Company</p>
+                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.bride.company}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="w-12 h-px bg-rose-500/30 mt-3 flex-shrink-0" />
-                <p className="text-gray-700">{weddingData.bride.location}</p>
+              {/* Address */}
+              <div className="group relative bg-gradient-to-br from-blue-500/5 to-blue-500/10 p-3 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-md bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[10px] uppercase tracking-wider text-blue-600/70 font-medium mb-0.5">Address</p>
+                    <p className="text-sm font-medium text-gray-900 leading-relaxed">{weddingData.bride.address}</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="w-12 h-px bg-rose-500/30 mt-3 flex-shrink-0" />
-                <p className="text-lg italic text-gray-600 leading-relaxed">
-                  "{weddingData.bride.quote}"
-                </p>
+              {/* Family */}
+              <div className="group relative bg-gradient-to-br from-purple-500/5 to-purple-500/10 p-4 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-md bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                    <Users className="w-4 h-4 text-purple-600" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[10px] uppercase tracking-wider text-purple-600/70 font-medium mb-3">Family</p>
+                    <div className="space-y-2">
+                      {/* Father */}
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
+                        <span className="px-2 py-0.5 bg-purple-500/20 text-purple-700 text-[10px] font-semibold rounded uppercase tracking-wide">Father</span>
+                        <span className="text-xs text-gray-900 font-medium">{weddingData.bride.family.father}</span>
+                      </div>
+                      {/* Mother */}
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
+                        <span className="px-2 py-0.5 bg-rose-500/20 text-rose-700 text-[10px] font-semibold rounded uppercase tracking-wide">Mother</span>
+                        <span className="text-xs text-gray-900 font-medium">{weddingData.bride.family.mother}</span>
+                      </div>
+                      {/* Sister */}
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
+                        <span className="px-2 py-0.5 bg-blue-500/20 text-blue-700 text-[10px] font-semibold rounded uppercase tracking-wide">Sister</span>
+                        <span className="text-xs text-gray-900 font-medium">{weddingData.bride.family.sister}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

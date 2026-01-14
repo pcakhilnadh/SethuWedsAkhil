@@ -6,14 +6,18 @@ import coupleVideo from "@assets/couple_video.mp4";
 
 export const weddingData = {
   groom: {
-    name: "Akhil Nadh",
+    name: "Akhil",
     fullName: "Akhil Nadh PC",
     role: "The Groom",
     address: "Pullolikkal House, Solvent Road, Irinjalakuda",
     location: "Irinjalakuda, Kerala",
-    profession: "Photographer",
-    jobTitle: "Professional Photographer",
-    company: "Self Employed",
+    profession: "Datascientist",
+    family:{
+      father: "Dr. P.P Chandran ",
+      mother: "Preethy K.S",
+    },
+    jobTitle: "Datascientist",
+    company: "AIR INDIA",
     photoUrl: groomAvatar,
     quote: "A storyteller through the lens, capturing life's most beautiful moments one frame at a time.",
     social: {
@@ -22,7 +26,7 @@ export const weddingData = {
     },
   },
   bride: {
-    name: "Sethulakshmi",
+    name: "Sethu",
     fullName: "Sethulakshmi R",
     role: "The Bride",
     address: "Thiruvananthapuram",
@@ -30,6 +34,11 @@ export const weddingData = {
     profession: "Software Engineer",
     jobTitle: "Senior Software Engineer",
     company: "Tech Company",
+    family:{
+      father: "Mr. Rajesh V Chandran",
+      mother: "Seeja Rajesh (late)",
+      sister: "Meenakshi R",
+    },
     photoUrl: brideAvatar,
     quote: "A blend of grace and intellect, weaving dreams into reality with every step.",
     social: {
@@ -43,17 +52,23 @@ export const weddingData = {
     dateShort: "29.03.2026",
     location: "Irinjalakuda",
     ceremony: {
-      title: "The Ceremony",
+      title: "Akhil Weds Sethu Wedding Ceremony",
+      place: "Green Park Convention Centre",
       date: "Sunday, March 29, 2026",
       time: "10:00 AM - 12:00 PM",
-      location: "Specific Venue TBD, Irinjalakuda",
-      description: "We invite you to be with us as we celebrate our love. Dress in your finest traditional attire and bring your dancing shoes for a day full of joy.",
+      location: "NH 544, OppMGF Hyundai, Desom, Aluva, Kerala 683102",
+      geolocation: "48HX+MP Aluva, Kerala",
+      googleMapUrl: "https://maps.app.goo.gl/vD2NDApQhEApS83U9",
+      description: "With hearts full of joy and love, we cordially invite you to witness and bless the sacred union of our souls. Your presence will add grace to our special day as two families become one.",
     },
     reception: {
-      title: "Reception Dinner",
+      title: "Akhil Weds Sethu Reception",
+      place: "St Thomas Cathedral Convention Centre, Santhome Hall",
       date: "Sunday, March 29, 2026",
       time: "6:00 PM Onwards",
-      location: "Specific Venue TBD, Irinjalakuda",
+      location: "Irinjalakuda, Thrissur, Kerala 680121",
+      geolocation: null,
+      googleMapUrl: "https://maps.app.goo.gl/ArDocc1EgGr8AjbKA",
       description: "Join us for an evening of delicious food, heartfelt toasts, and celebration under the stars. Your presence is the greatest gift we could ask for.",
     },
   },
