@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { LeftPhotoComponent } from "@/components/LeftPhotoComponent";
 import { RightDetailsComponent } from "@/components/RightDetailsComponent";
 import { CoupleSection } from "@/components/CoupleSection";
-import { StorySection } from "@/components/StorySection";
+import { GallerySection } from "@/components/GallerySection";
 import { WeddingEventSection } from "@/components/WeddingEventSection";
 import { ReceptionEventSection } from "@/components/ReceptionEventSection";
 import { PeopleSection } from "@/components/PeopleSection";
@@ -24,7 +24,7 @@ export default function Home() {
       </section>
 
       <CoupleSection />
-      <StorySection />
+      <GallerySection />
       <WeddingEventSection />
       <ReceptionEventSection />
       <PeopleSection />

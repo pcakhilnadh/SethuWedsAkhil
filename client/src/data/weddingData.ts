@@ -98,4 +98,38 @@ export const weddingData = {
       instagramUrl: null,
     },
   ],
+  gallery: [
+    {
+      url: "https://images.unsplash.com/photo-1519741497674-611481863552",
+      alt: "Wedding moment 1",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1591604466107-ec97de577aff",
+      alt: "Wedding moment 2",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1606800052052-a08af7148866",
+      alt: "Wedding moment 3",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a",
+      alt: "Wedding moment 4",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed",
+      alt: "Wedding moment 5",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6",
+      alt: "Wedding moment 6",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e",
+      alt: "Wedding moment 7",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486",
+      alt: "Wedding moment 8",
+    },
+  ],
 };
