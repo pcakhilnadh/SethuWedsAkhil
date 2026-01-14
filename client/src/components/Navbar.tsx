@@ -67,14 +67,16 @@ export function Navbar() {
         <div className="mx-12 flex-shrink-0 relative group">
           <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <a href="#home" onClick={(e) => scrollToSection(e, "#home")} className="relative block">
-            <img 
-              src={logo} 
-              alt="Logo" 
-              className={cn(
-                "rounded-full border border-primary/10 transition-all duration-700 object-cover hover:scale-105",
-                scrolled ? "h-14 w-14" : "h-24 w-24"
-              )}
-            />
+            <div className={cn(
+              "rounded-full border-2 border-amber-400 transition-all duration-700 hover:scale-105 bg-white p-2",
+              scrolled ? "h-14 w-14" : "h-24 w-24"
+            )}>
+              <img 
+                src={logo} 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
           </a>
         </div>
 
