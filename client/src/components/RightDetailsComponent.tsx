@@ -1,47 +1,104 @@
 import { motion } from "framer-motion";
 import { Countdown } from "@/components/Countdown";
+import { Heart } from "lucide-react";
+import { weddingData as WeddingDataType } from "@/data/weddingData";
 
 interface RightDetailsComponentProps {
-  weddingDate: Date;
+  weddingData: typeof WeddingDataType;
 }
 
-export function RightDetailsComponent({ weddingDate }: RightDetailsComponentProps) {
+export function RightDetailsComponent({ weddingData }: RightDetailsComponentProps) {
   return (
-    <div className="lg:w-3/5 flex items-center justify-center bg-white relative py-20 lg:py-0">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-40 pointer-events-none" />
+    <div className="lg:w-3/5 flex items-center justify-center bg-white relative py-16 lg:py-0 lg:pt-24">
       
-      <div className="text-center px-6 md:px-16 max-w-3xl mx-auto relative z-10">
+      <div className="text-center px-8 md:px-16 max-w-xl mx-auto relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="space-y-10"
         >
-          <span className="font-script text-3xl md:text-5xl text-primary/70 block mb-6 italic tracking-wide">
-            Save the Date
-          </span>
+          {/* Header Text */}
+          <div className="space-y-3">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-block"
+            >
+              <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground/50 font-medium">
+                Save the Date
+              </span>
+            </motion.div>
+          </div>
           
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-foreground mb-8 leading-[1.1] tracking-tight">
-            <span className="block font-light">Akhil Nadh</span>
-            <span className="inline-block my-4 text-primary/30 text-2xl md:text-4xl px-4 relative">
-              <span className="absolute left-0 top-1/2 w-8 h-[1px] bg-primary/20 -translate-x-full" />
-              &
-              <span className="absolute right-0 top-1/2 w-8 h-[1px] bg-primary/20 translate-x-full" />
-            </span>
-            <span className="block font-light">Sethulakshmi</span>
-          </h1>
+          {/* Names Section */}
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
+                {weddingData.groom.name}
+              </h1>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              className="py-1"
+            >
+              <Heart className="w-5 h-5 mx-auto text-rose-400 fill-rose-400" />
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
+                {weddingData.bride.name}
+              </h1>
+            </motion.div>
+          </div>
 
-          <div className="flex items-center justify-center space-x-4 mb-12">
-            <div className="h-[1px] w-12 bg-primary/10" />
-            <p className="text-sm md:text-base font-display uppercase tracking-[0.4em] text-foreground/60">
-              March 29, 2025
+          {/* Wedding Date */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="space-y-2"
+          >
+            <div className="inline-block px-6 py-2 border border-foreground/10 rounded-full">
+              <p className="text-sm tracking-[0.2em] text-foreground/70 font-light">
+                {weddingData.wedding.dateShort}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Countdown */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1 }}
+            className="pt-2"
+          >
+            <Countdown targetDate={weddingData.wedding.date} />
+          </motion.div>
+
+          {/* Bottom Message */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
+            className="pt-2"
+          >
+            <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground/40 font-medium">
+              We're Getting Married
             </p>
-            <div className="h-[1px] w-12 bg-primary/10" />
-          </div>
-
-          <div className="relative group p-8 md:p-12">
-            <div className="absolute inset-0 border border-primary/5 rounded-3xl scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-700" />
-            <Countdown targetDate={weddingDate} />
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>

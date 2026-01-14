@@ -5,6 +5,7 @@ import { RightDetailsComponent } from "@/components/RightDetailsComponent";
 import { SectionHeading } from "@/components/SectionHeading";
 import { EventCard } from "@/components/EventCard";
 import { format } from "date-fns";
+import { weddingData } from "@/data/weddingData";
 
 // Assets
 import coupleImg from "@assets/couple_1768316554062.jpeg";
@@ -12,8 +13,6 @@ import groomAvatar from "@assets/akhil_avatar_1768316293680.png";
 import brideAvatar from "@assets/sethu_avatar_1768316293680.png";
 
 export default function Home() {
-  const weddingDate = new Date("2025-03-29T10:00:00");
-
   return (
     <div className="bg-background min-h-screen">
       <Navbar />
@@ -22,8 +21,8 @@ export default function Home() {
       <section id="home" className="min-h-screen relative flex items-stretch overflow-hidden">
         {/* Mobile: Stacked | Desktop: Split */}
         <div className="flex flex-col lg:flex-row w-full h-full">
-          <LeftPhotoComponent coupleImg={coupleImg} altText="Akhil & Sethulakshmi" />
-          <RightDetailsComponent weddingDate={weddingDate} />
+          <LeftPhotoComponent coupleImg={coupleImg} altText={`${weddingData.groom.name} & ${weddingData.bride.name}`} />
+          <RightDetailsComponent weddingData={weddingData} />
         </div>
       </section>
 
@@ -46,12 +45,12 @@ export default function Home() {
             >
               <div className="flex-1 order-2 md:order-1 text-center md:text-right space-y-6">
                 <div>
-                  <h3 className="text-4xl lg:text-6xl font-display text-foreground mb-3 font-light">Akhil Nadh PC</h3>
-                  <p className="text-primary/60 font-display tracking-[0.3em] uppercase text-xs mb-6">The Groom</p>
+                  <h3 className="text-4xl lg:text-6xl font-display text-foreground mb-3 font-light">{weddingData.groom.fullName}</h3>
+                  <p className="text-primary/60 font-display tracking-[0.3em] uppercase text-xs mb-6">{weddingData.groom.role}</p>
                   <div className="space-y-4 text-muted-foreground/80 font-light text-lg lg:text-xl leading-relaxed">
-                    <p className="italic">"A storyteller through the lens, capturing life's most beautiful moments one frame at a time."</p>
+                    <p className="italic">"{weddingData.groom.quote}"</p>
                     <div className="h-[1px] w-12 bg-primary/20 ml-auto mr-0 hidden md:block" />
-                    <p className="text-sm tracking-widest uppercase opacity-60">Irinjalakuda, Kerala</p>
+                    <p className="text-sm tracking-widest uppercase opacity-60">{weddingData.groom.location}</p>
                   </div>
                 </div>
               </div>
@@ -60,7 +59,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-secondary/5 rounded-2xl -rotate-3" />
                 <img 
                   src={groomAvatar} 
-                  alt="Akhil Nadh" 
+                  alt={weddingData.groom.fullName} 
                   className="w-full h-full object-cover rounded-2xl shadow-xl relative z-10 filter sepia-[0.1]"
                 />
               </div>
@@ -79,18 +78,18 @@ export default function Home() {
                 <div className="absolute inset-0 bg-secondary/5 rounded-2xl rotate-3" />
                 <img 
                   src={brideAvatar} 
-                  alt="Sethulakshmi R" 
+                  alt={weddingData.bride.fullName} 
                   className="w-full h-full object-cover rounded-2xl shadow-xl relative z-10 filter sepia-[0.1]"
                 />
               </div>
               <div className="flex-1 text-center md:text-left space-y-6">
                 <div>
-                  <h3 className="text-4xl lg:text-6xl font-display text-foreground mb-3 font-light">Sethulakshmi R</h3>
-                  <p className="text-primary/60 font-display tracking-[0.3em] uppercase text-xs mb-6">The Bride</p>
+                  <h3 className="text-4xl lg:text-6xl font-display text-foreground mb-3 font-light">{weddingData.bride.fullName}</h3>
+                  <p className="text-primary/60 font-display tracking-[0.3em] uppercase text-xs mb-6">{weddingData.bride.role}</p>
                   <div className="space-y-4 text-muted-foreground/80 font-light text-lg lg:text-xl leading-relaxed">
-                    <p className="italic">"A blend of grace and intellect, weaving dreams into reality with every step."</p>
+                    <p className="italic">"{weddingData.bride.quote}"</p>
                     <div className="h-[1px] w-12 bg-primary/20 mr-auto ml-0 hidden md:block" />
-                    <p className="text-sm tracking-widest uppercase opacity-60">Thiruvananthapuram, Kerala</p>
+                    <p className="text-sm tracking-widest uppercase opacity-60">{weddingData.bride.location}</p>
                   </div>
                 </div>
               </div>
@@ -141,11 +140,11 @@ export default function Home() {
           <SectionHeading title="The Wedding" subtitle="Join us for the moment" />
 
           <EventCard 
-            title="The Ceremony"
-            date="Saturday, March 29, 2025"
-            time="10:00 AM - 12:00 PM"
-            location="Specific Venue TBD, Irinjalakuda"
-            description="We invite you to be with us as we celebrate our love. Dress in your finest traditional attire and bring your dancing shoes for a day full of joy."
+            title={weddingData.wedding.ceremony.title}
+            date={weddingData.wedding.ceremony.date}
+            time={weddingData.wedding.ceremony.time}
+            location={weddingData.wedding.ceremony.location}
+            description={weddingData.wedding.ceremony.description}
             mapUrl="https://maps.google.com" // Placeholder
             calendarUrl="https://calendar.google.com" // Placeholder
           />
@@ -158,11 +157,11 @@ export default function Home() {
           <SectionHeading title="The Reception" subtitle="Celebrate with us" />
 
           <EventCard 
-            title="Reception Dinner"
-            date="Saturday, March 29, 2025"
-            time="6:00 PM Onwards"
-            location="Specific Venue TBD, Irinjalakuda"
-            description="Join us for an evening of delicious food, heartfelt toasts, and celebration under the stars. Your presence is the greatest gift we could ask for."
+            title={weddingData.wedding.reception.title}
+            date={weddingData.wedding.reception.date}
+            time={weddingData.wedding.reception.time}
+            location={weddingData.wedding.reception.location}
+            description={weddingData.wedding.reception.description}
             mapUrl="https://maps.google.com" // Placeholder
             calendarUrl="https://calendar.google.com" // Placeholder
             delay={0.2}
@@ -205,8 +204,8 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="bg-foreground text-white py-16 text-center">
         <div className="container mx-auto px-4">
-          <h2 className="font-script text-5xl md:text-6xl text-primary/80 mb-6">Akhil & Sethulakshmi</h2>
-          <p className="font-display text-lg tracking-widest uppercase opacity-60 mb-8">March 29, 2025 • Irinjalakuda</p>
+          <h2 className="font-script text-5xl md:text-6xl text-primary/80 mb-6">{weddingData.groom.name} & {weddingData.bride.name}</h2>
+          <p className="font-display text-lg tracking-widest uppercase opacity-60 mb-8">{weddingData.wedding.dateString} • {weddingData.wedding.location}</p>
           <p className="text-sm opacity-40 font-light">
             With love, we can't wait to see you there.
           </p>

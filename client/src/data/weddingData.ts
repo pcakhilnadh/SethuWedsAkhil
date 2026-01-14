@@ -1,0 +1,45 @@
+export const weddingData = {
+  groom: {
+    name: "Akhil Nadh",
+    fullName: "Akhil Nadh PC",
+    role: "The Groom",
+    address: "Pullolikkal House, Solvent Road, Irinjalakuda",
+    location: "Irinjalakuda, Kerala",
+    profession: "Photographer",
+    photoUrl: "@assets/akhil_avatar_1768316293680.png",
+    quote: "A storyteller through the lens, capturing life's most beautiful moments one frame at a time.",
+  },
+  bride: {
+    name: "Sethulakshmi",
+    fullName: "Sethulakshmi R",
+    role: "The Bride",
+    address: "Thiruvananthapuram",
+    location: "Thiruvananthapuram, Kerala",
+    profession: "Software Engineer",
+    photoUrl: "@assets/sethu_avatar_1768316293680.png",
+    quote: "A blend of grace and intellect, weaving dreams into reality with every step.",
+  },
+  wedding: {
+    date: new Date("2026-03-29T10:00:00"),
+    dateString: "March 29, 2026",
+    dateShort: "29.03.2026",
+    location: "Irinjalakuda",
+    ceremony: {
+      title: "The Ceremony",
+      date: "Sunday, March 29, 2026",
+      time: "10:00 AM - 12:00 PM",
+      location: "Specific Venue TBD, Irinjalakuda",
+      description: "We invite you to be with us as we celebrate our love. Dress in your finest traditional attire and bring your dancing shoes for a day full of joy.",
+    },
+    reception: {
+      title: "Reception Dinner",
+      date: "Sunday, March 29, 2026",
+      time: "6:00 PM Onwards",
+      location: "Specific Venue TBD, Irinjalakuda",
+      description: "Join us for an evening of delicious food, heartfelt toasts, and celebration under the stars. Your presence is the greatest gift we could ask for.",
+    },
+  },
+  couple: {
+    photoUrl: "@assets/couple_1768316554062.jpeg",
+  },
+};

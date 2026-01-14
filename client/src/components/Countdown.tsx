@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { differenceInSeconds, intervalToDuration } from "date-fns";
+import { differenceInSeconds, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
 import { cn } from "@/lib/utils";
 
 interface CountdownProps {
@@ -8,16 +8,27 @@ interface CountdownProps {
 }
 
 export function Countdown({ targetDate, className }: CountdownProps) {
-  const [timeLeft, setTimeLeft] = useState(intervalToDuration({ start: new Date(), end: targetDate }));
+  const calculateTimeLeft = () => {
+    const now = new Date();
+    const totalSeconds = differenceInSeconds(targetDate, now);
+    
+    if (totalSeconds <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+    
+    const days = Math.floor(totalSeconds / (24 * 60 * 60));
+    const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const seconds = totalSeconds % 60;
+    
+    return { days, hours, minutes, seconds };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const now = new Date();
-      if (differenceInSeconds(targetDate, now) <= 0) {
-        clearInterval(timer);
-        return;
-      }
-      setTimeLeft(intervalToDuration({ start: now, end: targetDate }));
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(timer);
@@ -25,13 +36,13 @@ export function Countdown({ targetDate, className }: CountdownProps) {
 
   return (
     <div className={cn("flex items-center justify-center space-x-4 md:space-x-12", className)}>
-      <TimeBox value={timeLeft.days || 0} label="Days" />
+      <TimeBox value={timeLeft.days} label="Days" />
       <div className="text-primary/10 text-xl font-light pt-2">:</div>
-      <TimeBox value={timeLeft.hours || 0} label="Hrs" />
+      <TimeBox value={timeLeft.hours} label="Hrs" />
       <div className="text-primary/10 text-xl font-light pt-2">:</div>
-      <TimeBox value={timeLeft.minutes || 0} label="Min" />
+      <TimeBox value={timeLeft.minutes} label="Min" />
       <div className="text-primary/10 text-xl font-light pt-2">:</div>
-      <TimeBox value={timeLeft.seconds || 0} label="Sec" />
+      <TimeBox value={timeLeft.seconds} label="Sec" />
     </div>
   );
 }
