@@ -6,10 +6,10 @@ import { Menu, X } from "lucide-react";
 const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "Couple", href: "#couple" },
-  { label: "Gallery", href: "#gallery" },
+  // { label: "Gallery", href: "#gallery" },
   { label: "Wedding", href: "#wedding" },
   { label: "Reception", href: "#reception" },
-  { label: "People", href: "#people" },
+  // { label: "People", href: "#people" },
 ];
 
 export function Navbar() {
@@ -51,7 +51,7 @@ export function Navbar() {
 
         {/* Desktop Left Links */}
         <div className="hidden lg:flex items-center space-x-12 flex-1 justify-end">
-          {NAV_ITEMS.slice(0, 3).map((item) => (
+          {NAV_ITEMS.slice(0, 2).map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -80,7 +80,7 @@ export function Navbar() {
 
         {/* Desktop Right Links */}
         <div className="hidden lg:flex items-center space-x-12 flex-1 justify-start">
-          {NAV_ITEMS.slice(3).map((item) => (
+          {NAV_ITEMS.slice(2).map((item) => (
             <a
               key={item.label}
               href={item.href}

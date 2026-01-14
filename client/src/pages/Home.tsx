@@ -24,10 +24,10 @@ export default function Home() {
       </section>
 
       <CoupleSection />
-      <GallerySection />
+      {/* <GallerySection /> */}
       <WeddingEventSection />
       <ReceptionEventSection />
-      <PeopleSection />
+      {/* <PeopleSection /> */}
       <FooterSection />
     </div>
   );
