@@ -1,3 +1,9 @@
+import groomAvatar from "@assets/akhil_avatar_1768316293680.png";
+import brideAvatar from "@assets/sethu_avatar_1768316293680.png";
+import coupleImg from "@assets/couple_1768316554062.jpeg";
+import coupleBg from "@assets/couple_bg.png";
+import coupleVideo from "@assets/couple_video.mp4";
+
 export const weddingData = {
   groom: {
     name: "Akhil Nadh",
@@ -8,11 +14,11 @@ export const weddingData = {
     profession: "Photographer",
     jobTitle: "Professional Photographer",
     company: "Self Employed",
-    photoUrl: "@assets/akhil_avatar_1768316293680.png",
+    photoUrl: groomAvatar,
     quote: "A storyteller through the lens, capturing life's most beautiful moments one frame at a time.",
     social: {
-      linkedin: null,
-      instagram: null,
+      linkedin: "https://www.linkedin.com/in/akhilnadhpc/",
+      instagram: "http://instagram.com/akhilnadhpc",
     },
   },
   bride: {
@@ -24,11 +30,11 @@ export const weddingData = {
     profession: "Software Engineer",
     jobTitle: "Senior Software Engineer",
     company: "Tech Company",
-    photoUrl: "@assets/sethu_avatar_1768316293680.png",
+    photoUrl: brideAvatar,
     quote: "A blend of grace and intellect, weaving dreams into reality with every step.",
     social: {
       linkedin: null,
-      instagram: null,
+      instagram: "https://www.instagram.com/ammu_l.a.k.s.h.m.i/",
     },
   },
   wedding: {
@@ -52,7 +58,9 @@ export const weddingData = {
     },
   },
   couple: {
-    photoUrl: "@assets/couple_1768316554062.jpeg",
+    photoUrl: coupleImg,
+    photoWithoutBg: coupleBg,
+    videoUrl: coupleVideo,
   },
   people: [
     {

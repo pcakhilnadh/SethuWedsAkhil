@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { weddingData } from "@/data/weddingData";
-import groomAvatar from "@assets/akhil_avatar_1768316293680.png";
-import brideAvatar from "@assets/sethu_avatar_1768316293680.png";
-import coupleImg from "@assets/couple_1768316554062.jpeg";
+import { Linkedin, Instagram } from "lucide-react";
 
 export function CoupleSection() {
   return (
@@ -19,9 +17,12 @@ export function CoupleSection() {
           className="relative h-[60vh] lg:h-auto"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-amber-500/10" />
-          <img 
-            src={coupleImg} 
-            alt={`${weddingData.groom.name} & ${weddingData.bride.name}`}
+          <video 
+            src={weddingData.couple.videoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover"
           />
         </motion.div>
@@ -65,7 +66,7 @@ export function CoupleSection() {
               <div className="absolute -inset-4 bg-gradient-to-br from-rose-500/20 to-amber-500/20 blur-2xl opacity-60 transition-opacity duration-700" />
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
-                  src={groomAvatar} 
+                  src={weddingData.groom.photoUrl} 
                   alt={weddingData.groom.fullName}
                   className="w-full h-full object-cover transition-all duration-700"
                 />
@@ -82,6 +83,30 @@ export function CoupleSection() {
               <h3 className="text-5xl lg:text-7xl font-display font-light text-gray-900 mb-6">
                 {weddingData.groom.fullName}
               </h3>
+              {(weddingData.groom.social.linkedin || weddingData.groom.social.instagram) && (
+                <div className="flex gap-3 mt-6">
+                  {weddingData.groom.social.linkedin && (
+                    <a 
+                      href={weddingData.groom.social.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-rose-500 hover:text-rose-500 hover:bg-rose-50 transition-all duration-300"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  )}
+                  {weddingData.groom.social.instagram && (
+                    <a 
+                      href={weddingData.groom.social.instagram} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-rose-500 hover:text-rose-500 hover:bg-rose-50 transition-all duration-300"
+                    >
+                      <Instagram className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="space-y-6 text-gray-600 leading-relaxed">
@@ -125,6 +150,30 @@ export function CoupleSection() {
               <h3 className="text-5xl lg:text-7xl font-display font-light text-gray-900 mb-6">
                 {weddingData.bride.fullName}
               </h3>
+              {(weddingData.bride.social.linkedin || weddingData.bride.social.instagram) && (
+                <div className="flex gap-3 mt-6">
+                  {weddingData.bride.social.linkedin && (
+                    <a 
+                      href={weddingData.bride.social.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-rose-500 hover:text-rose-500 hover:bg-rose-50 transition-all duration-300"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  )}
+                  {weddingData.bride.social.instagram && (
+                    <a 
+                      href={weddingData.bride.social.instagram} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-rose-500 hover:text-rose-500 hover:bg-rose-50 transition-all duration-300"
+                    >
+                      <Instagram className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="space-y-6 text-gray-600 leading-relaxed">
@@ -156,7 +205,7 @@ export function CoupleSection() {
               <div className="absolute -inset-4 bg-gradient-to-br from-amber-500/20 to-rose-500/20 blur-2xl opacity-60 transition-opacity duration-700" />
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
-                  src={brideAvatar} 
+                  src={weddingData.bride.photoUrl} 
                   alt={weddingData.bride.fullName}
                   className="w-full h-full object-cover transition-all duration-700"
                 />
