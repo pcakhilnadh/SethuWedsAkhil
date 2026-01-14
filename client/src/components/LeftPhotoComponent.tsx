@@ -7,8 +7,8 @@ interface LeftPhotoComponentProps {
 
 export function LeftPhotoComponent({ coupleImg, altText = "Couple" }: LeftPhotoComponentProps) {
   return (
-    <div className="lg:w-2/5 relative h-[40vh] lg:h-[85vh] overflow-hidden flex items-center justify-center lg:py-12">
-      <div className="relative w-full h-full max-w-2xl">
+    <div className="lg:w-1/2 relative h-[50vh] lg:h-screen overflow-hidden flex items-center justify-center bg-white p-8 lg:p-12">
+      <div className="relative w-4/5 h-4/5">
         <div className="absolute inset-0 bg-black/10 z-10 rounded-lg" /> {/* Subtle overlay */}
         <motion.img 
           initial={{ scale: 1.1, opacity: 0 }}
@@ -16,7 +16,7 @@ export function LeftPhotoComponent({ coupleImg, altText = "Couple" }: LeftPhotoC
           transition={{ duration: 1.5, ease: "easeOut" }}
           src={coupleImg} 
           alt={altText} 
-          className="w-full h-full object-cover object-center rounded-lg shadow-2xl"
+          className="w-full h-full object-cover object-center rounded-lg shadow-xl"
         />
       </div>
     </div>
