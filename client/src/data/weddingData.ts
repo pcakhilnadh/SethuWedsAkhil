@@ -6,8 +6,14 @@ export const weddingData = {
     address: "Pullolikkal House, Solvent Road, Irinjalakuda",
     location: "Irinjalakuda, Kerala",
     profession: "Photographer",
+    jobTitle: "Professional Photographer",
+    company: "Self Employed",
     photoUrl: "@assets/akhil_avatar_1768316293680.png",
     quote: "A storyteller through the lens, capturing life's most beautiful moments one frame at a time.",
+    social: {
+      linkedin: null,
+      instagram: null,
+    },
   },
   bride: {
     name: "Sethulakshmi",
@@ -16,8 +22,14 @@ export const weddingData = {
     address: "Thiruvananthapuram",
     location: "Thiruvananthapuram, Kerala",
     profession: "Software Engineer",
+    jobTitle: "Senior Software Engineer",
+    company: "Tech Company",
     photoUrl: "@assets/sethu_avatar_1768316293680.png",
     quote: "A blend of grace and intellect, weaving dreams into reality with every step.",
+    social: {
+      linkedin: null,
+      instagram: null,
+    },
   },
   wedding: {
     date: new Date("2026-03-29T10:00:00"),
@@ -42,4 +54,48 @@ export const weddingData = {
   couple: {
     photoUrl: "@assets/couple_1768316554062.jpeg",
   },
+  people: [
+    {
+      name: "Father of Groom",
+      profileUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+      relationship: "Father",
+      side: "groom",
+      instagramUrl: null,
+    },
+    {
+      name: "Mother of Groom",
+      profileUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+      relationship: "Mother",
+      side: "groom",
+      instagramUrl: null,
+    },
+    {
+      name: "Father of Bride",
+      profileUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+      relationship: "Father",
+      side: "bride",
+      instagramUrl: null,
+    },
+    {
+      name: "Mother of Bride",
+      profileUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+      relationship: "Mother",
+      side: "bride",
+      instagramUrl: null,
+    },
+    {
+      name: "Best Man",
+      profileUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+      relationship: "Best Friend",
+      side: "groom",
+      instagramUrl: null,
+    },
+    {
+      name: "Maid of Honor",
+      profileUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+      relationship: "Best Friend",
+      side: "bride",
+      instagramUrl: null,
+    },
+  ],
 };
