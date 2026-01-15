@@ -1,6 +1,6 @@
 import { weddingData } from "@/data/weddingData";
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Clock, Navigation, Map } from "lucide-react";
+import { MapPin, Calendar, Clock, Navigation, Map, Download } from "lucide-react";
 
 export function WeddingEventSection() {
   const ceremony = weddingData.wedding.ceremony;
@@ -13,6 +13,16 @@ export function WeddingEventSection() {
       return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
     };
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ceremony.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(ceremony.description)}&location=${encodeURIComponent(ceremony.location)}`;
+  };
+
+  // Download invitation card
+  const downloadInvitationCard = () => {
+    const link = document.createElement('a');
+    link.href = ceremony.invitationCardUrl;
+    link.download = 'Wedding-Invitation-Card.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -94,7 +104,7 @@ export function WeddingEventSection() {
               </div>
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {/* Navigate Button */}
                 <a
                   href={ceremony.googleMapUrl}
@@ -103,7 +113,7 @@ export function WeddingEventSection() {
                   className="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-rose-600 hover:to-rose-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-rose-500/25 hover:-translate-y-0.5"
                 >
                   <Navigation className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-45 transition-transform duration-300" />
-                  <span>Navigate with Maps</span>
+                  <span>Navigate</span>
                 </a>
 
                 {/* Add to Calendar Button */}
@@ -116,6 +126,15 @@ export function WeddingEventSection() {
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
                   <span>Add to Calendar</span>
                 </a>
+
+                {/* Download Invitation Button */}
+                <button
+                  onClick={downloadInvitationCard}
+                  className="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5"
+                >
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-0.5 transition-transform duration-300" />
+                  <span>Download Invite</span>
+                </button>
               </div>
             </div>
           </div>

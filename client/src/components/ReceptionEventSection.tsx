@@ -1,6 +1,6 @@
 import { weddingData } from "@/data/weddingData";
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Clock, Navigation, Sparkles } from "lucide-react";
+import { MapPin, Calendar, Clock, Navigation, Sparkles, Download } from "lucide-react";
 
 export function ReceptionEventSection() {
   const reception = weddingData.wedding.reception;
@@ -14,6 +14,16 @@ export function ReceptionEventSection() {
       return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
     };
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(reception.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(reception.description)}&location=${encodeURIComponent(reception.location)}`;
+  };
+
+  // Download invitation card
+  const downloadInvitationCard = () => {
+    const link = document.createElement('a');
+    link.href = reception.invitationCardUrl;
+    link.download = 'Reception-Invitation-Card.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -95,7 +105,7 @@ export function ReceptionEventSection() {
               </div>
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {/* Navigate Button */}
                 <a
                   href={reception.googleMapUrl}
@@ -104,7 +114,7 @@ export function ReceptionEventSection() {
                   className="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-amber-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-amber-500/25 hover:-translate-y-0.5"
                 >
                   <Navigation className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-45 transition-transform duration-300" />
-                  <span>Navigate with Maps</span>
+                  <span>Navigate</span>
                 </a>
 
                 {/* Add to Calendar Button */}
@@ -117,6 +127,15 @@ export function ReceptionEventSection() {
                   <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
                   <span>Add to Calendar</span>
                 </a>
+
+                {/* Download Invitation Button */}
+                <button
+                  onClick={downloadInvitationCard}
+                  className="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-green-500/25 hover:-translate-y-0.5"
+                >
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-0.5 transition-transform duration-300" />
+                  <span>Download Invite</span>
+                </button>
               </div>
             </div>
           </div>

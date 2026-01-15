@@ -3,6 +3,8 @@ import brideAvatar from "@assets/sethu_avatar_1768316293680.png";
 import coupleImg from "@assets/couple_1768316554062.jpeg";
 import coupleBg from "@assets/couple_bg.png";
 import coupleVideo from "@assets/couple_video.mp4";
+import weddingCardImg from "@assets/wedding_card.png";
+import receptionCardImg from "@assets/reception_card.png";
 
 export const weddingData = {
   groom: {
@@ -21,7 +23,7 @@ export const weddingData = {
     photoUrl: groomAvatar,
     quote: "A storyteller through the lens, capturing life's most beautiful moments one frame at a time.",
     social: {
-      linkedin: "https://www.linkedin.com/in/akhilnadhpc/",
+      linkedin: null,
       instagram: "http://instagram.com/akhilnadhpc",
     },
   },
@@ -60,6 +62,7 @@ export const weddingData = {
       geolocation: "48HX+MP Aluva, Kerala",
       googleMapUrl: "https://maps.app.goo.gl/vD2NDApQhEApS83U9",
       description: "With hearts full of joy and love, we cordially invite you to witness and bless the sacred union of our souls. Your presence will add grace to our special day as two families become one.",
+      invitationCardUrl: weddingCardImg,
     },
     reception: {
       title: "Akhil Weds Sethu Reception",
@@ -70,6 +73,7 @@ export const weddingData = {
       geolocation: null,
       googleMapUrl: "https://maps.app.goo.gl/ArDocc1EgGr8AjbKA",
       description: "Join us for an evening of delicious food, heartfelt toasts, and celebration under the stars. Your presence is the greatest gift we could ask for.",
+      invitationCardUrl: receptionCardImg,
     },
   },
   couple: {
