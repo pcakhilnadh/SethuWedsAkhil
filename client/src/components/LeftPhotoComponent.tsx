@@ -6,8 +6,8 @@ interface LeftPhotoComponentProps {
 
 export function LeftPhotoComponent({ videoUrl }: LeftPhotoComponentProps) {
   return (
-    <div className="lg:w-1/2 relative h-[50vh] lg:h-screen overflow-hidden flex items-center justify-center bg-white p-8 lg:p-12">
-      <div className="relative w-4/5 h-4/5">
+    <div className="w-full lg:w-1/2 relative h-[40vh] sm:h-[50vh] lg:h-auto overflow-hidden flex items-center justify-center bg-white p-4 sm:p-6 lg:p-12">
+      <div className="relative w-full sm:w-4/5 h-full sm:h-4/5 max-w-lg">
         <div className="absolute inset-0 bg-black/10 z-10 rounded-lg" /> {/* Subtle overlay */}
         <motion.video
           initial={{ scale: 1.1, opacity: 0 }}

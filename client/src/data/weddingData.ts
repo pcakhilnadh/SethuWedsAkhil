@@ -31,9 +31,9 @@ export const weddingData = {
     role: "The Bride",
     address: "Thiruvananthapuram",
     location: "Thiruvananthapuram, Kerala",
-    profession: "Software Engineer",
-    jobTitle: "Senior Software Engineer",
-    company: "Tech Company",
+    profession: "Design Engineer",
+    jobTitle: "Design Engineer",
+    company: "Larsen & Toubro",
     family:{
       father: "Mr. Rajesh V Chandran",
       mother: "Seeja Rajesh (late)",

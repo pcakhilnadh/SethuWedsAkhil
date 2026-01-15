@@ -7,14 +7,14 @@ export function CoupleSection() {
     <section id="couple" className="min-h-screen bg-white relative overflow-hidden">
       
       {/* Top Section - Couple Photo Left, Title Right */}
-      <div className="grid lg:grid-cols-2 min-h-[60vh]">
+      <div className="grid lg:grid-cols-2 min-h-[50vh] lg:min-h-[60vh]">
         {/* Left - Couple Photo */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative h-[60vh] lg:h-auto"
+          className="relative h-[50vh] lg:h-auto"
         >
           <img 
             src={weddingData.couple.photoWithoutBg}
@@ -29,15 +29,15 @@ export function CoupleSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex items-center justify-center px-8 lg:px-16 py-16 lg:py-0"
+          className="flex items-center justify-center px-6 sm:px-8 lg:px-16 py-12 sm:py-16 lg:py-0"
         >
           <div className="max-w-xl">
-            <div className="space-y-6">
-              <div className="h-px w-20 bg-rose-500/40" />
-              <h2 className="text-6xl lg:text-8xl font-display font-light text-gray-900 leading-none">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="h-px w-12 sm:w-20 bg-rose-500/40" />
+              <h2 className="text-4xl sm:text-5xl lg:text-8xl font-display font-light text-gray-900 leading-tight sm:leading-none">
                 Meet<br />The Couple
               </h2>
-              <p className="text-lg text-gray-500 font-light tracking-wide">
+              <p className="text-base sm:text-lg text-gray-500 font-light tracking-wide">
                 Two souls destined to become one
               </p>
             </div>
@@ -46,7 +46,7 @@ export function CoupleSection() {
       </div>
 
       {/* Bottom Section - Groom & Bride Details */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-20 lg:py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-32">
         
         {/* Groom Section */}
         <motion.div 
@@ -54,7 +54,7 @@ export function CoupleSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center mb-32 lg:mb-48"
+          className="grid lg:grid-cols-5 gap-8 sm:gap-12 lg:gap-16 items-center mb-20 sm:mb-32 lg:mb-48"
         >
           {/* Photo - Takes 2 columns */}
           <div className="lg:col-span-2">
@@ -71,12 +71,12 @@ export function CoupleSection() {
           </div>
 
           {/* Details - Takes 3 columns */}
-          <div className="lg:col-span-3 space-y-8">
+          <div className="lg:col-span-3 space-y-6 sm:space-y-8">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-rose-500 mb-4 font-medium">
+              <p className="text-xs uppercase tracking-[0.3em] text-rose-500 mb-3 sm:mb-4 font-medium">
                 {weddingData.groom.role}
               </p>
-              <h3 className="text-5xl lg:text-7xl font-display font-light text-gray-900 mb-6">
+              <h3 className="text-3xl sm:text-5xl lg:text-7xl font-display font-light text-gray-900 mb-4 sm:mb-6">
                 {weddingData.groom.fullName}
               </h3>
               {(weddingData.groom.social.linkedin || weddingData.groom.social.instagram) && (
@@ -105,29 +105,29 @@ export function CoupleSection() {
               )}
             </div>
 
-            <div className="space-y-3 mt-8">
+            <div className="space-y-3 mt-6 sm:mt-8">
               {/* Profession & Company - Combined Row */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="group relative bg-gradient-to-br from-rose-500/5 to-rose-500/10 p-3 rounded-lg border border-rose-500/20 hover:border-rose-500/40 transition-all duration-300">
-                  <div className="flex items-center gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="group relative bg-gradient-to-br from-rose-500/5 to-rose-500/10 p-3 sm:p-3 rounded-lg border border-rose-500/20 hover:border-rose-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     <div className="w-8 h-8 rounded-md bg-rose-500/20 flex items-center justify-center flex-shrink-0">
-                      <Briefcase className="w-4 h-4 text-rose-600" />
+                      <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-600" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] uppercase tracking-wider text-rose-600/70 font-medium mb-0.5">Profession</p>
-                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.groom.profession}</p>
+                      <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-rose-600/70 font-medium mb-0.5">Profession</p>
+                      <p className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{weddingData.groom.profession}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="group relative bg-gradient-to-br from-amber-500/5 to-amber-500/10 p-3 rounded-lg border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300">
-                  <div className="flex items-center gap-3">
+                <div className="group relative bg-gradient-to-br from-amber-500/5 to-amber-500/10 p-3 sm:p-3 rounded-lg border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     <div className="w-8 h-8 rounded-md bg-amber-500/20 flex items-center justify-center flex-shrink-0">
-                      <Building2 className="w-4 h-4 text-amber-600" />
+                      <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] uppercase tracking-wider text-amber-600/70 font-medium mb-0.5">Company</p>
-                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.groom.company}</p>
+                      <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-amber-600/70 font-medium mb-0.5">Company</p>
+                      <p className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{weddingData.groom.company}</p>
                     </div>
                   </div>
                 </div>
@@ -135,35 +135,35 @@ export function CoupleSection() {
 
               {/* Address */}
               <div className="group relative bg-gradient-to-br from-blue-500/5 to-blue-500/10 p-3 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-2 sm:gap-3">
                   <div className="w-8 h-8 rounded-md bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-blue-600" />
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] uppercase tracking-wider text-blue-600/70 font-medium mb-0.5">Address</p>
-                    <p className="text-sm font-medium text-gray-900 leading-relaxed">{weddingData.groom.address}</p>
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-blue-600/70 font-medium mb-0.5">Address</p>
+                    <p className="text-xs sm:text-sm font-medium text-gray-900 leading-relaxed">{weddingData.groom.address}</p>
                   </div>
                 </div>
               </div>
 
               {/* Family */}
-              <div className="group relative bg-gradient-to-br from-purple-500/5 to-purple-500/10 p-4 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
-                <div className="flex items-start gap-3">
+              <div className="group relative bg-gradient-to-br from-purple-500/5 to-purple-500/10 p-3 sm:p-4 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <div className="flex items-start gap-2 sm:gap-3">
                   <div className="w-8 h-8 rounded-md bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                    <Users className="w-4 h-4 text-purple-600" />
+                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] uppercase tracking-wider text-purple-600/70 font-medium mb-3">Family</p>
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-purple-600/70 font-medium mb-2 sm:mb-3">Family</p>
                     <div className="space-y-2">
                       {/* Father */}
-                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
-                        <span className="px-2 py-0.5 bg-purple-500/20 text-purple-700 text-[10px] font-semibold rounded uppercase tracking-wide">Father</span>
-                        <span className="text-xs text-gray-900 font-medium">{weddingData.groom.family.father}</span>
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-1.5 sm:p-2 border border-purple-100">
+                        <span className="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 text-purple-700 text-[9px] sm:text-[10px] font-semibold rounded uppercase tracking-wide">Father</span>
+                        <span className="text-[11px] sm:text-xs text-gray-900 font-medium">{weddingData.groom.family.father}</span>
                       </div>
                       {/* Mother */}
-                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
-                        <span className="px-2 py-0.5 bg-rose-500/20 text-rose-700 text-[10px] font-semibold rounded uppercase tracking-wide">Mother</span>
-                        <span className="text-xs text-gray-900 font-medium">{weddingData.groom.family.mother}</span>
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-1.5 sm:p-2 border border-purple-100">
+                        <span className="px-1.5 sm:px-2 py-0.5 bg-rose-500/20 text-rose-700 text-[9px] sm:text-[10px] font-semibold rounded uppercase tracking-wide">Mother</span>
+                        <span className="text-[11px] sm:text-xs text-gray-900 font-medium">{weddingData.groom.family.mother}</span>
                       </div>
                     </div>
                   </div>
@@ -182,12 +182,12 @@ export function CoupleSection() {
           className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center"
         >
           {/* Details - Takes 3 columns, comes first on desktop */}
-          <div className="lg:col-span-3 space-y-8 order-2 lg:order-1">
+          <div className="lg:col-span-3 space-y-6 sm:space-y-8 order-2 lg:order-1">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-rose-500 mb-4 font-medium">
+              <p className="text-xs uppercase tracking-[0.3em] text-rose-500 mb-3 sm:mb-4 font-medium">
                 {weddingData.bride.role}
               </p>
-              <h3 className="text-5xl lg:text-7xl font-display font-light text-gray-900 mb-6">
+              <h3 className="text-3xl sm:text-5xl lg:text-7xl font-display font-light text-gray-900 mb-4 sm:mb-6">
                 {weddingData.bride.fullName}
               </h3>
               {(weddingData.bride.social.linkedin || weddingData.bride.social.instagram) && (
@@ -216,29 +216,29 @@ export function CoupleSection() {
               )}
             </div>
 
-            <div className="space-y-3 mt-8">
+            <div className="space-y-3 mt-6 sm:mt-8">
               {/* Profession & Company - Combined Row */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="group relative bg-gradient-to-br from-rose-500/5 to-rose-500/10 p-3 rounded-lg border border-rose-500/20 hover:border-rose-500/40 transition-all duration-300">
-                  <div className="flex items-center gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="group relative bg-gradient-to-br from-rose-500/5 to-rose-500/10 p-3 sm:p-3 rounded-lg border border-rose-500/20 hover:border-rose-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     <div className="w-8 h-8 rounded-md bg-rose-500/20 flex items-center justify-center flex-shrink-0">
-                      <Briefcase className="w-4 h-4 text-rose-600" />
+                      <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-600" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] uppercase tracking-wider text-rose-600/70 font-medium mb-0.5">Profession</p>
-                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.bride.profession}</p>
+                      <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-rose-600/70 font-medium mb-0.5">Profession</p>
+                      <p className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{weddingData.bride.profession}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="group relative bg-gradient-to-br from-amber-500/5 to-amber-500/10 p-3 rounded-lg border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300">
-                  <div className="flex items-center gap-3">
+                <div className="group relative bg-gradient-to-br from-amber-500/5 to-amber-500/10 p-3 sm:p-3 rounded-lg border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     <div className="w-8 h-8 rounded-md bg-amber-500/20 flex items-center justify-center flex-shrink-0">
-                      <Building2 className="w-4 h-4 text-amber-600" />
+                      <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] uppercase tracking-wider text-amber-600/70 font-medium mb-0.5">Company</p>
-                      <p className="text-sm font-semibold text-gray-900 truncate">{weddingData.bride.company}</p>
+                      <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-amber-600/70 font-medium mb-0.5">Company</p>
+                      <p className="text-xs sm:text-sm font-semibold text-gray-900 truncate">{weddingData.bride.company}</p>
                     </div>
                   </div>
                 </div>
@@ -246,40 +246,40 @@ export function CoupleSection() {
 
               {/* Address */}
               <div className="group relative bg-gradient-to-br from-blue-500/5 to-blue-500/10 p-3 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-2 sm:gap-3">
                   <div className="w-8 h-8 rounded-md bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-blue-600" />
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] uppercase tracking-wider text-blue-600/70 font-medium mb-0.5">Address</p>
-                    <p className="text-sm font-medium text-gray-900 leading-relaxed">{weddingData.bride.address}</p>
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-blue-600/70 font-medium mb-0.5">Address</p>
+                    <p className="text-xs sm:text-sm font-medium text-gray-900 leading-relaxed">{weddingData.bride.address}</p>
                   </div>
                 </div>
               </div>
 
               {/* Family */}
-              <div className="group relative bg-gradient-to-br from-purple-500/5 to-purple-500/10 p-4 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
-                <div className="flex items-start gap-3">
+              <div className="group relative bg-gradient-to-br from-purple-500/5 to-purple-500/10 p-3 sm:p-4 rounded-lg border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                <div className="flex items-start gap-2 sm:gap-3">
                   <div className="w-8 h-8 rounded-md bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                    <Users className="w-4 h-4 text-purple-600" />
+                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-[10px] uppercase tracking-wider text-purple-600/70 font-medium mb-3">Family</p>
+                    <p className="text-[9px] sm:text-[10px] uppercase tracking-wider text-purple-600/70 font-medium mb-2 sm:mb-3">Family</p>
                     <div className="space-y-2">
                       {/* Father */}
-                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
-                        <span className="px-2 py-0.5 bg-purple-500/20 text-purple-700 text-[10px] font-semibold rounded uppercase tracking-wide">Father</span>
-                        <span className="text-xs text-gray-900 font-medium">{weddingData.bride.family.father}</span>
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-1.5 sm:p-2 border border-purple-100">
+                        <span className="px-1.5 sm:px-2 py-0.5 bg-purple-500/20 text-purple-700 text-[9px] sm:text-[10px] font-semibold rounded uppercase tracking-wide">Father</span>
+                        <span className="text-[11px] sm:text-xs text-gray-900 font-medium">{weddingData.bride.family.father}</span>
                       </div>
                       {/* Mother */}
-                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
-                        <span className="px-2 py-0.5 bg-rose-500/20 text-rose-700 text-[10px] font-semibold rounded uppercase tracking-wide">Mother</span>
-                        <span className="text-xs text-gray-900 font-medium">{weddingData.bride.family.mother}</span>
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-1.5 sm:p-2 border border-purple-100">
+                        <span className="px-1.5 sm:px-2 py-0.5 bg-rose-500/20 text-rose-700 text-[9px] sm:text-[10px] font-semibold rounded uppercase tracking-wide">Mother</span>
+                        <span className="text-[11px] sm:text-xs text-gray-900 font-medium">{weddingData.bride.family.mother}</span>
                       </div>
                       {/* Sister */}
-                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-2 border border-purple-100">
-                        <span className="px-2 py-0.5 bg-blue-500/20 text-blue-700 text-[10px] font-semibold rounded uppercase tracking-wide">Sister</span>
-                        <span className="text-xs text-gray-900 font-medium">{weddingData.bride.family.sister}</span>
+                      <div className="flex items-center gap-2 bg-white/50 rounded-md p-1.5 sm:p-2 border border-purple-100">
+                        <span className="px-1.5 sm:px-2 py-0.5 bg-blue-500/20 text-blue-700 text-[9px] sm:text-[10px] font-semibold rounded uppercase tracking-wide">Sister</span>
+                        <span className="text-[11px] sm:text-xs text-gray-900 font-medium">{weddingData.bride.family.sister}</span>
                       </div>
                     </div>
                   </div>

@@ -36,11 +36,11 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-display",
         scrolled 
-          ? "bg-white/70 backdrop-blur-xl border-b border-primary/5 shadow-sm py-3" 
-          : "bg-transparent py-6"
+          ? "bg-white/70 backdrop-blur-xl border-b border-primary/5 shadow-sm py-2 sm:py-3" 
+          : "bg-transparent py-4 sm:py-6"
       )}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between max-w-7xl">
+      <div className="container mx-auto px-3 sm:px-6 flex items-center justify-between max-w-7xl">
         {/* Mobile Menu Button */}
         <button 
           className="lg:hidden text-foreground p-2 hover:bg-primary/5 rounded-full transition-colors"
@@ -64,12 +64,12 @@ export function Navbar() {
         </div>
 
         {/* Logo Center */}
-        <div className="mx-12 flex-shrink-0 relative group">
+        <div className="mx-4 sm:mx-8 lg:mx-12 flex-shrink-0 relative group">
           <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <a href="#home" onClick={(e) => scrollToSection(e, "#home")} className="relative block">
             <div className={cn(
-              "rounded-full border-2 border-amber-400 transition-all duration-700 hover:scale-105 bg-white p-2",
-              scrolled ? "h-14 w-14" : "h-24 w-24"
+              "rounded-full border-2 border-amber-400 transition-all duration-700 hover:scale-105 bg-white p-1.5 sm:p-2",
+              scrolled ? "h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14" : "h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24"
             )}>
               <img 
                 src={logo} 

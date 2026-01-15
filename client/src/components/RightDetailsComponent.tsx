@@ -9,9 +9,9 @@ interface RightDetailsComponentProps {
 
 export function RightDetailsComponent({ weddingData }: RightDetailsComponentProps) {
   return (
-    <div className="lg:w-3/5 flex items-center justify-center bg-white relative py-16 lg:py-0 lg:pt-24">
+    <div className="w-full lg:w-3/5 flex items-center justify-center bg-white relative py-12 sm:py-16 lg:py-0 lg:pt-24">
       
-      <div className="text-center px-8 md:px-16 max-w-xl mx-auto relative">
+      <div className="text-center px-4 sm:px-8 md:px-16 max-w-xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,13 +33,13 @@ export function RightDetailsComponent({ weddingData }: RightDetailsComponentProp
           </div>
           
           {/* Names Section */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <h1 className="text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
                 {weddingData.groom.name}
               </h1>
             </motion.div>
@@ -50,7 +50,7 @@ export function RightDetailsComponent({ weddingData }: RightDetailsComponentProp
               transition={{ duration: 0.4, delay: 0.5 }}
               className="py-1"
             >
-              <Heart className="w-5 h-5 mx-auto text-rose-400 fill-rose-400" />
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-rose-400 fill-rose-400" />
             </motion.div>
             
             <motion.div
@@ -58,7 +58,7 @@ export function RightDetailsComponent({ weddingData }: RightDetailsComponentProp
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <h1 className="text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
                 {weddingData.bride.name}
               </h1>
             </motion.div>
