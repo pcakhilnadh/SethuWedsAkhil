@@ -9,12 +9,14 @@ import { WeddingEventSection } from "@/components/WeddingEventSection";
 import { ReceptionEventSection } from "@/components/ReceptionEventSection";
 import { PeopleSection } from "@/components/PeopleSection";
 import { FooterSection } from "@/components/FooterSection";
+import { SiteLoadingComponent } from "@/components/SiteLoadingComponent";
 import { weddingData } from "@/data/weddingData";
 
 export default function Home() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isMuted, setIsMuted] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const playMusic = async () => {
@@ -74,6 +76,14 @@ export default function Home() {
       }
     }
   };
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <SiteLoadingComponent onLoadingComplete={handleLoadingComplete} />;
+  }
 
   return (
     <div className="bg-background min-h-screen">
