@@ -15,7 +15,7 @@ export default function Home() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section id="home" className="min-h-screen relative flex items-stretch overflow-hidden">
+      <section id="home" className="min-h-screen relative flex items-stretch overflow-hidden pt-20 sm:pt-24 lg:pt-0">
         <div className="flex flex-col lg:flex-row w-full min-h-screen">
           <LeftPhotoComponent videoUrl={weddingData.couple.videoUrl} />
           <RightDetailsComponent weddingData={weddingData} />

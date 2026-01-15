@@ -33,35 +33,37 @@ export function RightDetailsComponent({ weddingData }: RightDetailsComponentProp
           </div>
           
           {/* Names Section */}
-          <div className="space-y-4 sm:space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
-                {weddingData.groom.name}
-              </h1>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-              className="py-1"
-            >
-              <Heart className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-rose-400 fill-rose-400" />
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
-                {weddingData.bride.name}
-              </h1>
-            </motion.div>
+          <div className="space-y-4 sm:space-y-6 lg:space-y-0">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-6 space-y-4 sm:space-y-6 lg:space-y-0">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
+                  {weddingData.groom.name}
+                </h1>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                className="py-1 lg:py-0"
+              >
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5 mx-auto text-rose-400 fill-rose-400" />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-light text-foreground tracking-tight leading-none">
+                  {weddingData.bride.name}
+                </h1>
+              </motion.div>
+            </div>
           </div>
 
           {/* Wedding Date */}
