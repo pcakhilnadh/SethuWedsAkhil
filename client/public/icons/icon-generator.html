@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="512" height="512"></canvas>
+    <script>
+        // Simple icon generator - creates a placeholder icon
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Background
+        ctx.fillStyle = '#E91E63';
+        ctx.fillRect(0, 0, 512, 512);
+        
+        // Heart shape
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.moveTo(256, 180);
+        ctx.bezierCurveTo(256, 150, 226, 130, 196, 130);
+        ctx.bezierCurveTo(146, 130, 146, 180, 146, 180);
+        ctx.bezierCurveTo(146, 200, 156, 220, 256, 300);
+        ctx.bezierCurveTo(356, 220, 366, 200, 366, 180);
+        ctx.bezierCurveTo(366, 180, 366, 130, 316, 130);
+        ctx.bezierCurveTo(286, 130, 256, 150, 256, 180);
+        ctx.fill();
+        
+        // Text
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 48px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('S & A', 256, 380);
+        
+        console.log('Open browser console to download the icon');
+        console.log('Right-click on canvas and "Save image as..." or use the download buttons below');
+    </script>
+    <div style="margin: 20px;">
+        <p>Right-click on the canvas above and select "Save image as..." to save the icon.</p>
+        <p>Then use an online tool to resize it to all required sizes:</p>
+        <ul>
+            <li><a href="https://www.pwabuilder.com/imageGenerator" target="_blank">PWA Builder Image Generator</a></li>
+            <li><a href="https://realfavicongenerator.net/" target="_blank">RealFaviconGenerator</a></li>
+        </ul>
+        <p>Required icon sizes: 72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512</p>
+    </div>
+</body>
+</html>

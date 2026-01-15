@@ -1,0 +1,5 @@
+﻿<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#E91E63"/>
+  <path d="M256 180c0-30-30-50-60-50-50 0-50 50-50 50s0 20 0 40c0 0 10 20 110 100 100-80 110-100 110-100 0-20 0-40 0-40s0-50-50-50c-30 0-60 20-60 50z" fill="white"/>
+  <text x="256" y="380" font-family="Arial" font-size="48" font-weight="bold" text-anchor="middle" fill="white">S &amp; A</text>
+</svg>
