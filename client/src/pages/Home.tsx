@@ -81,13 +81,9 @@ export default function Home() {
     setIsLoading(false);
   };
 
-  if (isLoading) {
-    return <SiteLoadingComponent onLoadingComplete={handleLoadingComplete} />;
-  }
-
   return (
-    <div className="bg-background min-h-screen">
-      {/* Background Music */}
+    <>
+      {/* Background Music - Always rendered */}
       <audio
         ref={audioRef}
         loop
@@ -95,7 +91,7 @@ export default function Home() {
         src="/wedding-music.mp3"
       />
 
-      {/* Music Control Button */}
+      {/* Music Control Button - Always rendered */}
       {showButton && (
         <button
           onClick={toggleMute}
@@ -106,22 +102,28 @@ export default function Home() {
         </button>
       )}
 
-      <Navbar />
+      {isLoading ? (
+        <SiteLoadingComponent onLoadingComplete={handleLoadingComplete} />
+      ) : (
+        <div className="bg-background min-h-screen">
+          <Navbar />
 
-      {/* HERO SECTION */}
-      <section id="home" className="min-h-screen relative flex items-stretch overflow-hidden pt-20 sm:pt-24 lg:pt-0">
-        <div className="flex flex-col lg:flex-row w-full min-h-screen">
-          <LeftPhotoComponent videoUrl={weddingData.couple.videoUrl} />
-          <RightDetailsComponent weddingData={weddingData} />
+          {/* HERO SECTION */}
+          <section id="home" className="min-h-screen relative flex items-stretch overflow-hidden pt-20 sm:pt-24 lg:pt-0">
+            <div className="flex flex-col lg:flex-row w-full min-h-screen">
+              <LeftPhotoComponent videoUrl={weddingData.couple.videoUrl} />
+              <RightDetailsComponent weddingData={weddingData} />
+            </div>
+          </section>
+
+          <CoupleSection />
+          {/* <GallerySection /> */}
+          <WeddingEventSection />
+          <ReceptionEventSection />
+          {/* <PeopleSection /> */}
+          <FooterSection />
         </div>
-      </section>
-
-      <CoupleSection />
-      {/* <GallerySection /> */}
-      <WeddingEventSection />
-      <ReceptionEventSection />
-      {/* <PeopleSection /> */}
-      <FooterSection />
-    </div>
+      )}
+    </>
   );
 }
