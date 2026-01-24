@@ -54,6 +54,9 @@ export function Timeline() {
   const bufferHeight = 100; // vh
   const totalHeight = (totalScenes * 100) + bufferHeight;
 
+  // Navbar height offset (approximate based on navbar styling)
+  const navbarHeight = '80px'; // Adjust if needed
+
   return (
     <section 
       id="story" 
@@ -63,10 +66,11 @@ export function Timeline() {
     >
       {/* Fixed viewport that stays in place while user scrolls */}
       <div 
-        className={`${isFixed ? 'fixed' : 'absolute'} top-0 left-0 w-full h-screen overflow-hidden bg-background`}
+        className={`${isFixed ? 'fixed' : 'absolute'} left-0 w-full overflow-hidden bg-background`}
         style={{
+          top: isFixed ? navbarHeight : (scrollProgress >= 1 ? 'auto' : '0'),
           bottom: isFixed ? 'auto' : (scrollProgress >= 1 ? '0' : 'auto'),
-          top: isFixed ? '0' : (scrollProgress >= 1 ? 'auto' : '0'),
+          height: isFixed ? `calc(100vh - ${navbarHeight})` : '100vh',
         }}
       >
         <div 
