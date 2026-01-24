@@ -28,9 +28,9 @@ export const timelineScenes: TimelineScene[] = [
   },
   {
     id: 'scene-2',
-    scrollRange: [0.2, 0.4],
+    scrollRange: [0.2, 0.33],
     title: 'First Conversations',
-    date: '4 November 2025',
+    date: '04 November 2025',
     message: 'Through shared laughter and late-night conversations, we discovered a connection that went beyond words. Every moment together felt natural, effortless.',
     image: {
       src: '/chat.png',
@@ -53,9 +53,9 @@ export const timelineScenes: TimelineScene[] = [
   },
   {
     id: 'scene-3',
-    scrollRange: [0.4, 0.6],
+    scrollRange: [0.33, 0.5],
     title: 'Building Dreams',
-    date: '23 November 2025',
+    date: '06 December 2025',
     message: 'As time passed, we realized we weren\'t just creating memories—we were building a future. Our dreams began to intertwine, painting a picture of tomorrow together.',
     image: {
       src: '/first_meet.png',
@@ -78,7 +78,32 @@ export const timelineScenes: TimelineScene[] = [
   },
   {
     id: 'scene-4',
-    scrollRange: [0.6, 0.8],
+    scrollRange: [0.5, 0.66],
+    title: 'First Meeting',
+    date: '13 December 2025',
+    message: 'After countless conversations across the distance, we felt an undeniable connection. The moment we decided to meet for the first time, nerves and excitement filled our hearts as the virtual became beautifully real.',
+    image: {
+      src: '/we-meet.jpg',
+      alt: 'Our first meeting',
+      focalPoint: 'center'
+    },
+    motion: {
+      enter: {
+        scale: 1.2,
+        opacity: 0,
+        y: 100
+      },
+      exit: {
+        scale: 0.8,
+        opacity: 0,
+        y: -60
+      },
+      imageParallax: 42
+    }
+  },
+  {
+    id: 'scene-5',
+    scrollRange: [0.66, 0.83],
     title: 'The Promise',
     date: '04 January 2026',
     message: 'We discovered that we weren\'t just partners, but best friends destined to walk this path together. In quiet moments and life\'s little adventures, our bond grew stronger.',
@@ -102,8 +127,8 @@ export const timelineScenes: TimelineScene[] = [
     }
   },
   {
-    id: 'scene-5',
-    scrollRange: [0.8, 1.0],
+    id: 'scene-6',
+    scrollRange: [0.83, 1.0],
     title: 'Our Wedding Day',
     date: '29 March, 2026',
     message: 'And now, we invite you to witness the next chapter of our story. With hearts full of joy and the blessings of our families, we begin our forever.',

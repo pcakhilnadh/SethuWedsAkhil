@@ -1,21 +1,19 @@
 import { weddingData } from "@/data/weddingData";
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Clock, Navigation, Map, Download } from "lucide-react";
+import { MapPin, Calendar, Clock, Navigation, Download, ArrowRight, Heart, Sparkles } from "lucide-react";
 
 export function WeddingEventSection() {
   const ceremony = weddingData.wedding.ceremony;
   
-  // Generate Google Calendar link
   const generateCalendarUrl = () => {
     const startDate = new Date(weddingData.wedding.date);
-    const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000); // 2 hours
+    const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000);
     const formatDate = (date: Date) => {
       return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
     };
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ceremony.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(ceremony.description)}&location=${encodeURIComponent(ceremony.location)}`;
   };
 
-  // Download invitation card
   const downloadInvitationCard = () => {
     const link = document.createElement('a');
     link.href = ceremony.invitationCardUrl;
@@ -26,117 +24,197 @@ export function WeddingEventSection() {
   };
 
   return (
-    <section id="wedding" className="py-12 sm:py-16 lg:py-32 bg-gradient-to-br from-rose-50 via-white to-amber-50 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-rose-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-500 rounded-full blur-3xl" />
-      </div>
-
+    <section id="wedding" className="py-8 sm:py-12 lg:py-16 relative overflow-hidden">
+      {/* Elegant gradient background with subtle patterns */}
+      <div className="absolute inset-0 bg-gradient-to-br from-rose-50/80 via-pink-50/60 to-purple-50/80" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(244,63,94,0.1)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(168,85,247,0.1)_0%,transparent_50%)]" />
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Refined Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-12 lg:mb-16"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-10"
         >
-          <div className="inline-block px-3 sm:px-4 py-1.5 bg-rose-500/10 rounded-full mb-3 sm:mb-4">
-            <span className="text-[10px] sm:text-xs uppercase tracking-widest text-rose-600 font-semibold">The Wedding Ceremony</span>
+          <div className="inline-flex items-center gap-2 mb-3">
+            <div className="w-8 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent" />
+            <span className="text-rose-600 text-xs tracking-[0.3em] uppercase font-medium">The Wedding</span>
+            <div className="w-8 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-7xl font-display font-light text-gray-900 mb-3 sm:mb-4 px-4">{ceremony.title}</h2>
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto font-light px-4">{ceremony.description}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-slate-800 tracking-tight mb-2">
+            Sacred Union
+          </h2>
         </motion.div>
 
+        {/* Glassmorphic Two Column Layout */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8"
         >
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
-            {/* Venue Name */}
-            <div className="bg-gradient-to-r from-rose-500 to-amber-500 px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6">
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-display text-white text-center">{ceremony.place}</h3>
+          {/* Left Column - Venue Info with Glassmorphism */}
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="group relative"
+          >
+            {/* Sparkling border animation */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-rose-400 via-pink-500 to-purple-500 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-all duration-500 animate-pulse" />
+            
+            <div className="relative bg-white/70 backdrop-blur-xl rounded-3xl border border-white/40 shadow-2xl overflow-hidden">
+              {/* Venue Header with Glass Effect */}
+              <div className="relative bg-gradient-to-r from-rose-500/90 via-pink-500/90 to-purple-500/90 backdrop-blur-sm p-6">
+                <div className="absolute inset-0 bg-white/10" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+                
+                <div className="relative text-white">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: 0.5, type: "spring" }}
+                    className="flex items-center gap-2 mb-3"
+                  >
+                    <Heart className="w-4 h-4 fill-current" />
+                    <span className="text-xs tracking-wider uppercase text-white/90">Wedding Ceremony</span>
+                    <Sparkles className="w-4 h-4 animate-pulse" />
+                  </motion.div>
+                  <h3 className="text-2xl sm:text-3xl font-display mb-2">
+                    {ceremony.place}
+                  </h3>
+                  <p className="text-white/90 text-sm flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    {ceremony.geolocation}
+                  </p>
+                </div>
+              </div>
+
+              {/* Date & Time with Glassmorphic Cards */}
+              <div className="p-6">
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <motion.div 
+                    whileHover={{ scale: 1.05, rotate: 2 }}
+                    className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/30 shadow-lg"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-xl">
+                      <Calendar className="w-6 h-6 text-white" />
+                    </div>
+                    <p className="text-xs uppercase text-rose-600 font-semibold mb-1 text-center tracking-wider">Date</p>
+                    <p className="text-sm font-bold text-slate-800 text-center">{ceremony.date}</p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    whileHover={{ scale: 1.05, rotate: -2 }}
+                    className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/30 shadow-lg"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-xl">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <p className="text-xs uppercase text-purple-600 font-semibold mb-1 text-center tracking-wider">Time</p>
+                    <p className="text-sm font-bold text-slate-800 text-center">{ceremony.time}</p>
+                  </motion.div>
+                </div>
+
+                {/* Address with Glass Effect */}
+                <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-5 border border-white/30 shadow-lg">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-slate-400 to-gray-600 flex items-center justify-center flex-shrink-0 shadow-xl">
+                      <MapPin className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <span className="text-xs uppercase text-slate-600 font-semibold block mb-2 tracking-wider">Venue Address</span>
+                      <p className="text-sm text-slate-700 leading-relaxed font-medium">{ceremony.location}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Actions with Glassmorphism */}
+          <div className="space-y-6">
+            {/* Quick Info Cards with Glass Effect */}
+            <div className="grid grid-cols-2 gap-4">
+              <motion.div 
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="bg-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/40 shadow-2xl"
+              >
+                <div className="text-center">
+                  <div className="text-4xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent mb-2">29</div>
+                  <div className="text-xs text-rose-600 uppercase tracking-wider font-semibold">March 2026</div>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="bg-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/40 shadow-2xl"
+              >
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-indigo-600 bg-clip-text text-transparent mb-2">10:00 AM</div>
+                  <div className="text-xs text-purple-600 uppercase tracking-wider font-semibold">Ceremony</div>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Event Details Grid */}
-            <div className="p-4 sm:p-6 lg:p-12">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-                {/* Date */}
-                <div className="flex flex-col items-center text-center p-3 sm:p-4 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-rose-500/10 rounded-full flex items-center justify-center mb-2 sm:mb-3">
-                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-rose-600" />
-                  </div>
-                  <p className="text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">Date</p>
-                  <p className="text-sm sm:text-base font-semibold text-gray-900">{ceremony.date}</p>
-                </div>
+            {/* Action Buttons with Glass Effect */}
+            <div className="space-y-4">
+              <motion.a
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                href={ceremony.googleMapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative w-full bg-white/20 backdrop-blur-xl border border-white/30 text-slate-800 rounded-2xl px-6 py-4 font-semibold text-center overflow-hidden shadow-2xl hover:bg-white/30 transition-all duration-300"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  <Navigation className="w-5 h-5" />
+                  Navigate to Venue
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </motion.a>
 
-                {/* Time */}
-                <div className="flex flex-col items-center text-center p-3 sm:p-4 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-amber-500/10 rounded-full flex items-center justify-center mb-2 sm:mb-3">
-                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
-                  </div>
-                  <p className="text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">Time</p>
-                  <p className="text-sm sm:text-base font-semibold text-gray-900">{ceremony.time}</p>
-                </div>
-
-                {/* Location */}
-                <div className="flex flex-col items-center text-center p-3 sm:p-4 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/10 rounded-full flex items-center justify-center mb-2 sm:mb-3">
-                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-                  </div>
-                  <p className="text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">Venue</p>
-                  <p className="text-sm sm:text-base font-semibold text-gray-900">{ceremony.geolocation || 'Aluva'}</p>
-                </div>
-              </div>
-
-              {/* Full Address */}
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-xl p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-200">
-                <div className="flex items-start gap-2 sm:gap-3">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-rose-500 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-medium mb-1">Address</p>
-                    <p className="text-xs sm:text-sm text-gray-900 leading-relaxed">{ceremony.location}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                {/* Navigate Button */}
-                <a
-                  href={ceremony.googleMapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-rose-600 hover:to-rose-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-rose-500/25 hover:-translate-y-0.5"
-                >
-                  <Navigation className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-45 transition-transform duration-300" />
-                  <span>Navigate</span>
-                </a>
-
-                {/* Add to Calendar Button */}
-                <a
+              <div className="grid grid-cols-2 gap-4">
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   href={generateCalendarUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-white text-gray-900 rounded-xl text-sm sm:text-base font-semibold border-2 border-gray-200 hover:border-amber-500 hover:bg-amber-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-2xl px-4 py-4 font-semibold text-center shadow-xl hover:shadow-2xl transition-all text-sm backdrop-blur-sm"
                 >
-                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
-                  <span>Add to Calendar</span>
-                </a>
+                  <span className="flex items-center justify-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    Add to Calendar
+                  </span>
+                </motion.a>
 
-                {/* Download Invitation Button */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={downloadInvitationCard}
-                  className="group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl text-sm sm:text-base font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5"
+                  className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-2xl px-4 py-4 font-semibold text-center shadow-xl hover:shadow-2xl transition-all text-sm backdrop-blur-sm"
                 >
-                  <Download className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-0.5 transition-transform duration-300" />
-                  <span>Download Invite</span>
-                </button>
+                  <span className="flex items-center justify-center gap-2">
+                    <Download className="w-4 h-4" />
+                    Download
+                  </span>
+                </motion.button>
               </div>
             </div>
+
+            {/* Description Card with Glass Effect */}
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="bg-white/60 backdrop-blur-xl rounded-2xl p-5 border border-white/40 shadow-2xl"
+            >
+              <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                {ceremony.description}
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>

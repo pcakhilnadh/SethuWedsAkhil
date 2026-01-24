@@ -59,7 +59,7 @@ export const weddingData = {
       date: "Sunday, March 29, 2026",
       time: "10:00 AM - 12:00 PM",
       location: "NH 544, OppMGF Hyundai, Desom, Aluva, Kerala 683102",
-      geolocation: "48HX+MP Aluva, Kerala",
+      geolocation: "Deshom, Aluva, Kerala",
       googleMapUrl: "https://maps.app.goo.gl/vD2NDApQhEApS83U9",
       description: "With hearts full of joy and love, we cordially invite you to witness and bless the sacred union of our souls. Your presence will add grace to our special day as two families become one.",
       invitationCardUrl: weddingCardImg,
