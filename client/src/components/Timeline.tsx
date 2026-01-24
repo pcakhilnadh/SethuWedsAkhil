@@ -50,12 +50,16 @@ export function Timeline() {
   const totalScenes = timelineScenes.length;
   const translateX = -(scrollProgress * (totalScenes - 1) * 100);
 
+  // Add extra buffer (1 viewport height) at the end to let last scene stay
+  const bufferHeight = 100; // vh
+  const totalHeight = (totalScenes * 100) + bufferHeight;
+
   return (
     <section 
       id="story" 
       ref={containerRef} 
       className="relative bg-background"
-      style={{ height: `${totalScenes * 100}vh` }}
+      style={{ height: `${totalHeight}vh` }}
     >
       {/* Fixed viewport that stays in place while user scrolls */}
       <div 
