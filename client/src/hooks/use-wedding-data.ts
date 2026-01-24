@@ -1,14 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@shared/routes";
+import { weddingData } from "../data/weddingData";
 
 // Events Hook
 export function useEvents() {
   return useQuery({
-    queryKey: [api.events.list.path],
+    queryKey: ["events"],
     queryFn: async () => {
-      const res = await fetch(api.events.list.path, { credentials: "include" });
-      if (!res.ok) throw new Error("Failed to fetch events");
-      return api.events.list.responses[200].parse(await res.json());
+      // Return static wedding event data
+      return [
+        {
+          id: 1,
+          title: weddingData.wedding.ceremony.title,
+          date: weddingData.wedding.ceremony.date,
+          time: weddingData.wedding.ceremony.time,
+          location: weddingData.wedding.ceremony.place,
+          address: weddingData.wedding.ceremony.location,
+          description: weddingData.wedding.ceremony.description,
+          type: "wedding",
+        },
+        {
+          id: 2,
+          title: weddingData.wedding.reception.title,
+          date: weddingData.wedding.reception.date,
+          time: weddingData.wedding.reception.time,
+          location: weddingData.wedding.reception.place,
+          address: weddingData.wedding.reception.location,
+          description: weddingData.wedding.reception.description,
+          type: "reception",
+        },
+      ];
     },
   });
 }
@@ -16,11 +36,10 @@ export function useEvents() {
 // People Hook
 export function usePeople() {
   return useQuery({
-    queryKey: [api.people.list.path],
+    queryKey: ["people"],
     queryFn: async () => {
-      const res = await fetch(api.people.list.path, { credentials: "include" });
-      if (!res.ok) throw new Error("Failed to fetch people");
-      return api.people.list.responses[200].parse(await res.json());
+      // Return static people data
+      return weddingData.people;
     },
   });
 }
@@ -28,11 +47,10 @@ export function usePeople() {
 // Stories Hook
 export function useStories() {
   return useQuery({
-    queryKey: [api.stories.list.path],
+    queryKey: ["stories"],
     queryFn: async () => {
-      const res = await fetch(api.stories.list.path, { credentials: "include" });
-      if (!res.ok) throw new Error("Failed to fetch stories");
-      return api.stories.list.responses[200].parse(await res.json());
+      // Return static stories data (can be empty or added later)
+      return [];
     },
   });
 }
