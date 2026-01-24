@@ -21,6 +21,7 @@ export interface SceneMotion {
 export interface TimelineScene {
   id: string;
   scrollRange: [number, number]; // [start, end] as percentages 0-1
+  title: string;
   date: string;
   message: string;
   image: TimelineImage;

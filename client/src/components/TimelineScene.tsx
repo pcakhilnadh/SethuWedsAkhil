@@ -6,7 +6,7 @@ interface TimelineSceneProps {
 }
 
 export function TimelineSceneComponent({ scene, index }: TimelineSceneProps) {
-  const { date, message, image } = scene;
+  const { title, date, message, image } = scene;
   
   // Alternate layout: even scenes have content on left, odd scenes have content on right
   const contentOrder = index % 2 === 0 ? 'order-2 md:order-1' : 'order-2 md:order-2';
@@ -20,12 +20,20 @@ export function TimelineSceneComponent({ scene, index }: TimelineSceneProps) {
             <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center h-full">
               {/* Content Side */}
               <div className={`${contentOrder} space-y-6 md:space-y-8`}>
+                {/* Title */}
+                <div className="space-y-2">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent leading-tight">
+                    {title}
+                  </h2>
+                  <div className="h-1 w-20 bg-gradient-to-r from-primary to-accent rounded-full" />
+                </div>
+
                 {/* Date Badge */}
                 <div className="inline-block">
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 blur-xl" />
-                    <div className="relative px-6 py-3 bg-background/80 backdrop-blur-sm border border-primary/20 rounded-full">
-                      <p className="text-sm md:text-base font-semibold text-primary tracking-wider">
+                    <div className="relative px-5 py-2 bg-background/80 backdrop-blur-sm border border-primary/20 rounded-full">
+                      <p className="text-xs md:text-sm font-medium text-muted-foreground tracking-wide uppercase">
                         {date}
                       </p>
                     </div>
