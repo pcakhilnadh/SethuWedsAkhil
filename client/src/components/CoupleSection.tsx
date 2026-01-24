@@ -14,13 +14,15 @@ export function CoupleSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative h-[50vh] lg:h-auto"
+          className="relative h-[50vh] lg:h-auto flex items-center justify-center px-6 sm:px-8 lg:px-12"
         >
-          <img 
-            src={weddingData.couple.photoWithoutBg}
-            alt={`${weddingData.groom.name} & ${weddingData.bride.name}`}
-            className="w-full h-full object-contain"
-          />
+          <div className="w-full max-w-md lg:max-w-lg">
+            <img 
+              src={weddingData.couple.photoWithoutBg}
+              alt={`${weddingData.groom.name} & ${weddingData.bride.name}`}
+              className="w-full h-auto object-contain"
+            />
+          </div>
         </motion.div>
 
         {/* Right - Section Title */}
