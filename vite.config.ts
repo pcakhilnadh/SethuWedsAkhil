@@ -29,6 +29,7 @@ export default defineConfig({
         ],
       },
       workbox: {
+        globDirectory: "dist/public",
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
         runtimeCaching: [
@@ -64,6 +65,8 @@ export default defineConfig({
       },
       devOptions: {
         enabled: true,
+        type: "module",
+        navigateFallback: "index.html",
       },
     }),
   ],
