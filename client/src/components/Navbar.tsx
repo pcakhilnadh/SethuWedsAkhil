@@ -33,6 +33,7 @@ export function Navbar() {
   };
 
   return (
+    <>
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 font-display",
@@ -98,30 +99,32 @@ export function Navbar() {
         {/* Placeholder for balance on mobile */}
         <div className="w-8 lg:hidden"></div>
       </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={cn(
-        "fixed inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 transition-transform duration-300 lg:hidden",
-        mobileOpen ? "translate-x-0" : "translate-x-full"
-      )}>
+    </nav>
+    
+    {/* Mobile Menu Overlay - Outside nav for proper z-index */}
+    {mobileOpen && (
+      <div className="fixed inset-0 bg-background/95 backdrop-blur-xl z-[9999] lg:hidden overflow-y-auto">
         <button 
-          className="absolute top-6 right-6 p-2 text-foreground"
+          className="absolute top-6 right-6 p-2 text-foreground z-[10000]"
           onClick={() => setMobileOpen(false)}
         >
           <X className="w-8 h-8" />
         </button>
         
-        {NAV_ITEMS.map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            onClick={(e) => scrollToSection(e, item.href)}
-            className="text-3xl font-display text-foreground hover:text-primary transition-colors"
-          >
-            {item.label}
-          </a>
-        ))}
+        <div className="min-h-screen flex flex-col items-center justify-center px-6 py-24 gap-6">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => scrollToSection(e, item.href)}
+              className="text-2xl sm:text-3xl font-display text-foreground hover:text-primary transition-colors duration-300 text-center"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
       </div>
-    </nav>
+    )}
+  </>
   );
 }
