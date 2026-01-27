@@ -98,10 +98,7 @@ export function TimelineSceneComponent({ scene, index }: TimelineSceneProps) {
       {index === 0 && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce md:hidden">
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
-            <span>Swipe to explore</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <span>Scroll down :)</span>
           </div>
         </div>
       )}
