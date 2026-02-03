@@ -4,145 +4,43 @@ import { TimelineSceneComponent } from './TimelineScene';
 
 export function Timeline() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const fixedViewportRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isFixed, setIsFixed] = useState(false);
-  
-  // Refs for smooth scrolling
-  const progressRef = useRef(0);
-  const currentSceneRef = useRef(0);
+  const [currentScene, setCurrentScene] = useState(0);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const animationFrameRef = useRef<number | null>(null);
-  const isUserScrollingRef = useRef(false);
   const wheelAccumulatorRef = useRef(0);
   const lastWheelTimeRef = useRef(0);
 
   const totalScenes = timelineScenes.length;
 
-  // Get progress value for a specific scene index
-  const getProgressForScene = useCallback((sceneIndex: number) => {
-    return sceneIndex / (totalScenes - 1);
-  }, [totalScenes]);
-
-  // Smoothly animate to target scene
+  // Navigate to next/previous scene with smooth animation
   const animateToScene = useCallback((targetScene: number) => {
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
 
     const clampedScene = Math.max(0, Math.min(totalScenes - 1, targetScene));
-    currentSceneRef.current = clampedScene;
-    const targetProgress = getProgressForScene(clampedScene);
-
-    const animate = () => {
-      const current = progressRef.current;
-      const diff = targetProgress - current;
-      
-      if (Math.abs(diff) < 0.001) {
-        progressRef.current = targetProgress;
-        setScrollProgress(targetProgress);
-        return;
-      }
-
-      // Slower, smoother easing for better visual effect
-      const newProgress = current + diff * 0.05;
-      progressRef.current = newProgress;
-      setScrollProgress(newProgress);
-      
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    animationFrameRef.current = requestAnimationFrame(animate);
-  }, [totalScenes, getProgressForScene]);
-
-  // Update vertical scroll position to match scene
-  const syncVerticalScroll = useCallback((scene: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const rect = container.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const scrollableDistance = rect.height - viewportHeight;
-    const containerOffsetTop = window.scrollY + rect.top;
-    const progress = getProgressForScene(scene);
-    const targetScrollY = containerOffsetTop + (progress * scrollableDistance);
-    
-    window.scrollTo({ top: targetScrollY, behavior: 'auto' });
-  }, [getProgressForScene]);
+    setCurrentScene(clampedScene);
+  }, [totalScenes]);
 
   // Navigate to next/previous scene
   const goToNextScene = useCallback(() => {
-    const nextScene = Math.min(totalScenes - 1, currentSceneRef.current + 1);
-    if (nextScene !== currentSceneRef.current) {
-      isUserScrollingRef.current = true;
+    const nextScene = Math.min(totalScenes - 1, currentScene + 1);
+    if (nextScene !== currentScene) {
       animateToScene(nextScene);
-      syncVerticalScroll(nextScene);
-      setTimeout(() => { isUserScrollingRef.current = false; }, 400);
     }
-  }, [totalScenes, animateToScene, syncVerticalScroll]);
+  }, [totalScenes, currentScene, animateToScene]);
 
   const goToPrevScene = useCallback(() => {
-    const prevScene = Math.max(0, currentSceneRef.current - 1);
-    if (prevScene !== currentSceneRef.current) {
-      isUserScrollingRef.current = true;
+    const prevScene = Math.max(0, currentScene - 1);
+    if (prevScene !== currentScene) {
       animateToScene(prevScene);
-      syncVerticalScroll(prevScene);
-      setTimeout(() => { isUserScrollingRef.current = false; }, 400);
     }
-  }, [animateToScene, syncVerticalScroll]);
-
-  // Handle vertical scroll -> horizontal movement
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      // Skip if user is doing horizontal scroll
-      if (isUserScrollingRef.current) return;
-      
-      const rect = container.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const containerTop = rect.top;
-      const containerBottom = rect.bottom;
-
-      const shouldBeFixed = containerTop <= 0 && containerBottom >= viewportHeight;
-      setIsFixed(shouldBeFixed);
-
-      if (shouldBeFixed) {
-        const scrollableDistance = rect.height - viewportHeight;
-        const scrolled = -rect.top;
-        const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
-        progressRef.current = progress;
-        setScrollProgress(progress);
-        
-        // Update current scene based on progress
-        const scene = Math.round(progress * (totalScenes - 1));
-        currentSceneRef.current = scene;
-      } else if (containerTop > 0) {
-        progressRef.current = 0;
-        setScrollProgress(0);
-        currentSceneRef.current = 0;
-      } else {
-        progressRef.current = 1;
-        setScrollProgress(1);
-        currentSceneRef.current = totalScenes - 1;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, [totalScenes]);
+  }, [currentScene, animateToScene]);
 
   // Handle wheel events for horizontal scrolling - snap to scene
   useEffect(() => {
-    const fixedViewport = fixedViewportRef.current;
-    if (!fixedViewport || !isFixed) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const handleWheel = (e: WheelEvent) => {
       // Detect horizontal scroll intent (trackpad horizontal gesture or shift+wheel)
@@ -176,17 +74,17 @@ export function Timeline() {
       }
     };
 
-    fixedViewport.addEventListener('wheel', handleWheel, { passive: false });
+    container.addEventListener('wheel', handleWheel, { passive: false });
 
     return () => {
-      fixedViewport.removeEventListener('wheel', handleWheel);
+      container.removeEventListener('wheel', handleWheel);
     };
-  }, [isFixed, goToNextScene, goToPrevScene]);
+  }, [goToNextScene, goToPrevScene]);
 
   // Handle touch events for swipe scrolling - snap to scene
   useEffect(() => {
-    const fixedViewport = fixedViewportRef.current;
-    if (!fixedViewport || !isFixed) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     let isHorizontalGesture = false;
     let gestureDecided = false;
@@ -247,52 +145,36 @@ export function Timeline() {
       swipeHandled = false;
     };
 
-    fixedViewport.addEventListener('touchstart', handleTouchStart, { passive: true });
-    fixedViewport.addEventListener('touchmove', handleTouchMove, { passive: false });
-    fixedViewport.addEventListener('touchend', handleTouchEnd, { passive: true });
-    fixedViewport.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: true });
+    container.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 
     return () => {
-      fixedViewport.removeEventListener('touchstart', handleTouchStart);
-      fixedViewport.removeEventListener('touchmove', handleTouchMove);
-      fixedViewport.removeEventListener('touchend', handleTouchEnd);
-      fixedViewport.removeEventListener('touchcancel', handleTouchEnd);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('touchcancel', handleTouchEnd);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isFixed, goToNextScene, goToPrevScene]);
+  }, [goToNextScene, goToPrevScene]);
 
   // Calculate the horizontal translation
-  const translateX = -(scrollProgress * (totalScenes - 1) * 100);
-
-  // Add extra buffer (1 viewport height) at the end to let last scene stay
-  const bufferHeight = 100; // vh
-  const totalHeight = (totalScenes * 100) + bufferHeight;
-
-  // Navbar height offset (approximate based on navbar styling)
-  const navbarHeight = '80px'; // Adjust if needed
+  const translateX = -(currentScene * 100);
 
   return (
-    <section 
-      id="story" 
-      ref={containerRef} 
-      className="relative bg-background"
-      style={{ height: `${totalHeight}vh` }}
+    <section
+      id="story"
+      ref={containerRef}
+      className="relative bg-background h-screen overflow-hidden"
     >
-      {/* Fixed viewport that stays in place while user scrolls */}
-      <div 
-        ref={fixedViewportRef}
-        className={`${isFixed ? 'fixed' : 'absolute'} left-0 w-full overflow-hidden bg-background`}
-        style={{
-          top: isFixed ? navbarHeight : (scrollProgress >= 1 ? 'auto' : '0'),
-          bottom: isFixed ? 'auto' : (scrollProgress >= 1 ? '0' : 'auto'),
-          height: isFixed ? `calc(100vh - ${navbarHeight})` : '100vh',
-        }}
-      >
-        <div 
-          className="flex h-full"
-          style={{ 
+      {/* Timeline viewport */}
+      <div className="w-full h-full">
+        <div
+          className="flex h-full transition-transform duration-500 ease-out"
+          style={{
             transform: `translateX(${translateX}vw)`,
             width: `${totalScenes * 100}vw`
           }}
@@ -306,6 +188,44 @@ export function Timeline() {
           ))}
         </div>
       </div>
+
+      {/* Navigation dots - smaller on mobile */}
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 md:gap-2">
+        {timelineScenes.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => animateToScene(index)}
+            className={`rounded-full transition-all duration-300 ${index === currentScene
+              ? 'h-1.5 w-6 md:h-2 md:w-8 bg-primary'
+              : 'h-1.5 w-1.5 md:h-2 md:w-2 bg-primary/40 hover:bg-primary/60'
+              }`}
+            aria-label={`Go to scene ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Navigation arrows - smaller on mobile */}
+      <button
+        onClick={goToPrevScene}
+        disabled={currentScene === 0}
+        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background/90 transition-all"
+        aria-label="Previous scene"
+      >
+        <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button
+        onClick={goToNextScene}
+        disabled={currentScene === totalScenes - 1}
+        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-background/90 transition-all"
+        aria-label="Next scene"
+      >
+        <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
     </section>
   );
 }
