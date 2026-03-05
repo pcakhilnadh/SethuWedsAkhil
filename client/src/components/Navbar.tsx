@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import logo from "@assets/logo_1768316403138.jpeg";
 import { Menu, X } from "lucide-react";
@@ -10,12 +11,14 @@ const NAV_ITEMS = [
   // { label: "Gallery", href: "#gallery" },
   { label: "Wedding", href: "#wedding" },
   { label: "Reception", href: "#reception" },
+  { label: "Family", href: "#family" },
   // { label: "People", href: "#people" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -25,11 +28,26 @@ export function Navbar() {
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setMobileOpen(false);
+
+    const performScroll = () => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setMobileOpen(false);
+      }
+    };
+
+    // If we're already on the home page, just scroll.
+    if (location === "/") {
+      performScroll();
+      return;
     }
+
+    // If we're on a different route (e.g. /family), navigate home first,
+    // then scroll after a short delay once sections are mounted.
+    setLocation("/");
+    setMobileOpen(false);
+    setTimeout(performScroll, 200);
   };
 
   return (
@@ -53,7 +71,7 @@ export function Navbar() {
 
         {/* Desktop Left Links */}
         <div className="hidden lg:flex items-center space-x-12 flex-1 justify-end">
-          {NAV_ITEMS.slice(0, 2).map((item) => (
+          {NAV_ITEMS.slice(0, 3).map((item) => (
             <a
               key={item.label}
               href={item.href}
@@ -84,7 +102,7 @@ export function Navbar() {
 
         {/* Desktop Right Links */}
         <div className="hidden lg:flex items-center space-x-12 flex-1 justify-start">
-          {NAV_ITEMS.slice(2).map((item) => (
+          {NAV_ITEMS.slice(3).map((item) => (
             <a
               key={item.label}
               href={item.href}

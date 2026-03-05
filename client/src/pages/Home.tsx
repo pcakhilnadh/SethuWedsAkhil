@@ -12,6 +12,7 @@ import { PeopleSection } from "@/components/PeopleSection";
 import { FooterSection } from "@/components/FooterSection";
 import { SiteLoadingComponent } from "@/components/SiteLoadingComponent";
 import { weddingData } from "@/data/weddingData";
+import { FamilySection } from "@/components/FamilySection";
 
 export default function Home() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -122,6 +123,7 @@ export default function Home() {
           {/* <GallerySection /> */}
           <WeddingEventSection />
           <ReceptionEventSection />
+          <FamilySection />
           {/* <PeopleSection /> */}
           <FooterSection />
         </div>
