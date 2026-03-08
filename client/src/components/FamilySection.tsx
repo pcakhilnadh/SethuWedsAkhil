@@ -6,36 +6,16 @@ import {
   getChildren,
   getParents,
   getSpouse,
+  getSiblings,
   type FamilyMember,
 } from "@/data/familyData";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { TreePersonRow } from "./TreePersonRow";
 
 type TabKey = "groom" | "bride";
 
-function TreePersonRow({
-  member,
-  onSelect,
-}: {
-  member: FamilyMember;
-  onSelect?: (id: string) => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={() => onSelect?.(member.id)}
-      className="inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 shadow-sm border border-border/60 hover:border-primary/60 hover:bg-primary/5 transition-colors cursor-pointer"
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
-      <span className="text-sm font-medium text-foreground">{member.name}</span>
-      {member.nickname && (
-        <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-          {member.nickname}
-        </span>
-      )}
-    </button>
-  );
-}
+
 
 function PersonMiniTree({
   centerId,
@@ -52,6 +32,7 @@ function PersonMiniTree({
   const getParentsFn = getParents;
   const getChildrenFn = getChildren;
   const getSpouseFn = getSpouse;
+  const getSiblingsFn = getSiblings;
 
   const person = getById(centerId);
   if (!person) return null;
@@ -59,6 +40,7 @@ function PersonMiniTree({
   const parents = getParentsFn(centerId);
   const children = getChildrenFn(centerId);
   const spouse = getSpouseFn(centerId);
+  const siblings = getSiblingsFn(centerId);
 
   return (
     <div className="space-y-6">
@@ -92,6 +74,8 @@ function PersonMiniTree({
           </div>
         )}
 
+
+
         {/* Focus node (with optional spouse inline) */}
         <div className="space-y-2">
           <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-muted-foreground">
@@ -100,7 +84,7 @@ function PersonMiniTree({
           <div className="border-l border-border/60 pl-4">
             <div className="flex flex-wrap items-center gap-2">
               <span className="h-px w-3 bg-border/60" />
-              <TreePersonRow member={person} onSelect={onSelectPerson} />
+              <TreePersonRow member={person} onSelect={onSelectPerson} isFocused />
               {spouse && (
                 <>
                   <span className="text-xs text-muted-foreground">+</span>
@@ -136,6 +120,36 @@ function PersonMiniTree({
                       </>
                     )}
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Siblings branch */}
+        {siblings.length > 0 && (
+          <div className="space-y-2">
+            <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-muted-foreground">
+              Siblings of {person.name}
+            </p>
+            <div className="space-y-1 border-l border-border/60 pl-4">
+              {siblings.map((sibling, index) => (
+                <div key={sibling.id} className="flex items-center gap-2">
+                  <span className="h-px w-3 bg-border/60" />
+                  <TreePersonRow
+                    member={sibling}
+                    onSelect={onSelectPerson}
+                  />
+                  {getSpouse(sibling.id) && (
+                    <>
+                      <span className="text-xs text-muted-foreground">+</span>
+                      <TreePersonRow
+                        member={getSpouse(sibling.id)!}
+                        onSelect={onSelectPerson}
+                      />
+                    </>
+                  )}
+                  
                 </div>
               ))}
             </div>
@@ -226,6 +240,15 @@ export function FamilySection() {
               }}
             />
           </div>
+        </div>
+
+        {/* explorer button */}
+        <div className="mt-6 text-center">
+          <Button asChild variant="outline" size="sm">
+            <a href="/family-explorer" target="_blank" rel="noopener noreferrer">
+              Open family explorer
+            </a>
+          </Button>
         </div>
       </div>
     </section>
