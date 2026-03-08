@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { FooterSection } from "@/components/FooterSection";
 import {
-  groomFamilyMembers,
+  familyMembers,
   getFamilyMemberById,
   getChildren,
   getParents,
   getSiblings,
   getSpouse,
   type FamilyMember,
-} from "@/data/groomFamily";
+} from "@/data/familyData";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { cn } from "@/lib/utils";
@@ -176,9 +176,12 @@ export default function FamilyExplorerPage() {
   const [tab, setTab] = useState<TabKey>("groom");
   const [focusId, setFocusId] = useState<string>("KU");
 
-  const people = groomFamilyMembers; // later: switch by tab when bride data is added
+  const people = tab === "groom" 
+    ? familyMembers.filter(m => m.familySide === "groom")
+    : familyMembers.filter(m => m.familySide === "bride");
+  
   const centerPerson =
-    getFamilyMemberById(focusId) ?? groomFamilyMembers[0] ?? groomFamilyMembers[0];
+    getFamilyMemberById(focusId) ?? people[0] ?? people[0];
 
   return (
     <div className="bg-background min-h-screen">

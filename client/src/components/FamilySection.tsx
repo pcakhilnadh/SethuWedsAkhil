@@ -1,20 +1,13 @@
 import { useState } from "react";
 import { SectionHeading } from "@/components/SectionHeading";
 import {
-  groomFamilyMembers,
+  familyMembers,
   getFamilyMemberById,
   getChildren,
   getParents,
   getSpouse,
   type FamilyMember,
-} from "@/data/groomFamily";
-import {
-  brideFamilyMembers,
-  getBrideFamilyMemberById,
-  getBrideChildren,
-  getBrideParents,
-  getBrideSpouse,
-} from "@/data/brideFamily";
+} from "@/data/familyData";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -55,10 +48,10 @@ function PersonMiniTree({
 }) {
   const isGroomSide = tab === "groom";
 
-  const getById = isGroomSide ? getFamilyMemberById : getBrideFamilyMemberById;
-  const getParentsFn = isGroomSide ? getParents : getBrideParents;
-  const getChildrenFn = isGroomSide ? getChildren : getBrideChildren;
-  const getSpouseFn = isGroomSide ? getSpouse : getBrideSpouse;
+  const getById = getFamilyMemberById;
+  const getParentsFn = getParents;
+  const getChildrenFn = getChildren;
+  const getSpouseFn = getSpouse;
 
   const person = getById(centerId);
   if (!person) return null;
@@ -157,10 +150,13 @@ export function FamilySection() {
   const [tab, setTab] = useState<TabKey>("groom");
   const [focusId, setFocusId] = useState<string>("KU");
 
+  const groomFamilyMembers = familyMembers.filter(m => m.familySide === "groom");
+  const brideFamilyMembers = familyMembers.filter(m => m.familySide === "bride");
+
   const centerPerson =
     tab === "groom"
       ? getFamilyMemberById(focusId) ?? groomFamilyMembers[0]
-      : getBrideFamilyMemberById(focusId) ?? brideFamilyMembers[0];
+      : getFamilyMemberById(focusId) ?? brideFamilyMembers[0];
 
   return (
     <section
@@ -199,7 +195,7 @@ export function FamilySection() {
             size="sm"
             onClick={() => {
               setTab("bride");
-              setFocusId("B_BRIDE");
+              setFocusId("KV");
             }}
             className={cn(
               "rounded-full px-4",
@@ -217,13 +213,13 @@ export function FamilySection() {
               tab={tab}
               onSelectPerson={(id) => {
                 // When clicking on Akhil or Sethu, switch to the corresponding tab.
-                if (id === "KU" || id === "B_GROOM") {
+                if (id === "KU") {
                   setTab("groom");
                   setFocusId("KU");
                   return;
-                } else if (id === "KV" || id === "B_BRIDE") {
+                } else if (id === "KV") {
                   setTab("bride");
-                  setFocusId("B_BRIDE");
+                  setFocusId("KV");
                   return;
                 }
                 setFocusId(id);
