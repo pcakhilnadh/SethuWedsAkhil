@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   familyMembers,
   getChildren,
@@ -15,6 +15,12 @@ type TabKey = "groom" | "bride";
 
 // Avatar component - shows profile image if available, otherwise default icon
 function PersonAvatar({ member, generation }: { member: FamilyMember; generation: "parent" | "current" | "child" }) {
+  const [imageLoaded, setImageLoaded] = useState(true);
+
+  useEffect(() => {
+    setImageLoaded(true);
+  }, [member.id]);
+
   // Color coding for generations
   const generationColors = {
     parent: "bg-blue-500",
@@ -22,13 +28,14 @@ function PersonAvatar({ member, generation }: { member: FamilyMember; generation
     child: "bg-green-500"
   };
   
-  if (member.profileUrl) {
+  if (member.profileUrl && imageLoaded) {
     return (
       <div className="relative">
         <img 
           src={member.profileUrl} 
           alt={member.name}
           className="w-12 h-12 rounded-full object-cover"
+          onError={() => setImageLoaded(false)}
         />
         {/* Generation indicator ring */}
         <div className={cn(

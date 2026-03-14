@@ -16,7 +16,7 @@ export interface FamilyMember {
   order: number | null;
 }
 
-export const familyMembers: FamilyMember[] = [
+const rawFamilyMembers: FamilyMember[] = [
   { id: "A", name: "Raman", nickname: null, email: null, phoneNumber: null, familyPhoto: null, occupation: null, hometown: null, currentPlace: null, profileUrl: null, father: null, mother: null, spouse: "B", familySide: "groom", order: null },
   { id: "B", name: "Kunjalichi", nickname: null, email: null, phoneNumber: null, familyPhoto: null, occupation: null, hometown: null, currentPlace: null, profileUrl: null, father: null, mother: null, spouse: "A", familySide: "groom", order: null },
   { id: "CM", name: "Elder Son", nickname: null, email: null, phoneNumber: null, familyPhoto: null, occupation: null, hometown: null, currentPlace: null, profileUrl: null, father: "A", mother: "B", spouse: null, familySide: "groom", order: null },
@@ -525,6 +525,11 @@ export const familyMembers: FamilyMember[] = [
   { id: "SM", name: "Pravitha", nickname: null, email: null, phoneNumber: null, familyPhoto: null, occupation: null, hometown: null, currentPlace: null, profileUrl: null, father: "LM", mother: "SI", spouse: null, familySide: "bride", order: null },
   { id: "SN", name: "Praveen", nickname: null, email: null, phoneNumber: null, familyPhoto: null, occupation: null, hometown: null, currentPlace: null, profileUrl: null, father: "LM", mother: "SI", spouse: null, familySide: "bride", order: null },
 ];
+
+export const familyMembers: FamilyMember[] = rawFamilyMembers.map((member) => ({
+  ...member,
+  profileUrl: member.profileUrl ?? `/family_pics/${member.id}.jpeg`,
+}));
 
 // Helper functions to query family data
 
